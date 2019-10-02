@@ -6,7 +6,7 @@ type Props = {
   title?: string;
 };
 
-const Layout: React.FunctionComponent<Props> = ({
+const MainColumn: React.FC<Props> = ({
   children,
   title = 'This is the default title',
 }) => (
@@ -30,4 +30,4 @@ const Layout: React.FunctionComponent<Props> = ({
   </div>
 );
 
-export default Layout;
+export default MainColumn;
