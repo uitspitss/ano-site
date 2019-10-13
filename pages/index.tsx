@@ -1,23 +1,22 @@
 import * as React from 'react';
-import Link from 'next/link';
 import { NextPage } from 'next';
 import 'semantic-ui-css/semantic.min.css';
 
-import MainColumn from '../components/MainColumn';
 import LeftColumn from '../components/LeftColumn';
+import MainColumn from '../components/MainColumn';
+import MainLeftColumn from '../components/MainLeftColumn';
+import MainRightColumn from '../components/MainRightColumn';
+import Title from '../components/Title';
 import './index.css';
 
 const IndexPage: NextPage = () => {
   return (
     <>
       <LeftColumn />
-      <MainColumn title="MainColumn | Next.js + TypeScript Example">
-        <h1>Hello Next.js</h1>
-        <p>
-          <Link href="/about">
-            <a href="/about">About</a>
-          </Link>
-        </p>
+      <MainColumn>
+        <Title title="Homepage Title" />
+        <MainLeftColumn />
+        <MainRightColumn />
       </MainColumn>
     </>
   );
