@@ -4,18 +4,22 @@ import { NextPage } from 'next';
 import 'semantic-ui-css/semantic.min.css';
 
 import MainColumn from '../components/MainColumn';
+import LeftColumn from '../components/LeftColumn';
 import './index.css';
 
 const IndexPage: NextPage = () => {
   return (
-    <MainColumn title="MainColumn | Next.js + TypeScript Example">
-      <h1>Hello Next.js</h1>
-      <p>
-        <Link href="/about">
-          <a href="/about">About</a>
-        </Link>
-      </p>
-    </MainColumn>
+    <>
+      <LeftColumn />
+      <MainColumn title="MainColumn | Next.js + TypeScript Example">
+        <h1>Hello Next.js</h1>
+        <p>
+          <Link href="/about">
+            <a href="/about">About</a>
+          </Link>
+        </p>
+      </MainColumn>
+    </>
   );
 };
 
