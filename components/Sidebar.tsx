@@ -16,28 +16,23 @@ type Props = {
   links?: Links;
 };
 
-const CustomSidebar = styled(Sidebar)`
+const StyledSidebar = styled(Sidebar)`
   &&& {
     background-color: #f0f0ff;
   }
 `;
 
-// const CustomMenu = styled(Menu)`
-//   &&& {
-//     color: #ff0000;
-//   }
-// `;
-
-const LeftColumn: React.FC<Props> = ({
+const CustomSidebar: React.FC<Props> = ({
   links = [{ title: 'link-title', url: 'link-url' }],
 }) => (
   <SidebarPushable as={Segment}>
-    <CustomSidebar
+    <StyledSidebar
       as={Menu}
-      animation="overlay"
+      animation="push"
       icon="labeled"
       inverted
       vertical
+      // visible
       width="wide"
     >
       {links.map(link => (
@@ -46,8 +41,8 @@ const LeftColumn: React.FC<Props> = ({
           {link.title}
         </Menu.Item>
       ))}
-    </CustomSidebar>
+    </StyledSidebar>
   </SidebarPushable>
 );
 
-export default LeftColumn;
+export default CustomSidebar;
