@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { List } from 'semantic-ui-react';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   fax?: string;
 };
 
-const Contact: React.FC<Props> = ({
+const Contact: FC<Props> = ({
   mail = 'mail@example.com',
   productionName = 'belonging production',
   zipCode = '111-2222',

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Item, List, Image } from 'semantic-ui-react';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
   twitterLink?: string;
 };
 
-const Profile: React.FC<Props> = ({
+const Profile: FC<Props> = ({
   url = 'http://placehold.jp/500x500.png',
   name = 'my name',
   birthday = '1990/01/31',

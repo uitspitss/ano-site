@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import LatestInfo from './LatestInfo';
 
 type Props = {};
 
-const MainRightColumn: React.FC<Props> = () => (
+const MainRightColumn: FC<Props> = () => (
   <>
     <LatestInfo />
   </>

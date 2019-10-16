@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 import Profile from './Profile';
 import Contact from './Contact';
 
 type Props = {};
 
-const MainLeftColumn: React.FC<Props> = () => (
+const MainLeftColumn: FC<Props> = () => (
   <>
     <Profile />
     <Contact />

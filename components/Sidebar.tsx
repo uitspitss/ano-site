@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import {
   Sidebar,
@@ -22,7 +22,7 @@ const StyledSidebar = styled(Sidebar)`
   }
 `;
 
-const CustomSidebar: React.FC<Props> = ({
+const CustomSidebar: FC<Props> = ({
   links = [{ title: 'link-title', url: 'link-url' }],
 }) => (
   <SidebarPushable as={Segment}>

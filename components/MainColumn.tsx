@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
 import styled from '@emotion/styled';
 
@@ -9,7 +9,7 @@ import Title from './Title';
 
 type Props = {};
 
-const PrintedCharsDiv = styled('div')`
+const PrintedCharsDiv = styled.div`
   &::before {
     content: 'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test';
     z-index: -1;
@@ -22,7 +22,7 @@ const PrintedCharsDiv = styled('div')`
   }
 `;
 
-const MainColumn: React.FC<Props> = () => (
+const MainColumn: FC<Props> = () => (
   <PrintedCharsDiv>
     <Grid>
       <Sidebar />

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Item, Header, Divider } from 'semantic-ui-react';
 
 type Info = {
@@ -12,7 +12,7 @@ type Props = {
   infos?: Info[];
 };
 
-const LatestInfo: React.FC<Props> = ({
+const LatestInfo: FC<Props> = ({
   infos = [
     {
       mediaType: 'stage',
