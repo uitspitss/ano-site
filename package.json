@@ -17,9 +17,14 @@
     "semantic-ui-react": "^0.88.1"
   },
   "devDependencies": {
+    "@types/eslint": "^6.1.2",
+    "@types/eslint-plugin-prettier": "^2.2.0",
+    "@types/file-loader": "^4.2.0",
     "@types/node": "^12.7.8",
+    "@types/prettier": "^1.18.3",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
+    "@types/webpack": "^4.39.3",
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
     "@zeit/next-css": "^1.0.1",
