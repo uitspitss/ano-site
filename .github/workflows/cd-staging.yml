@@ -1,0 +1,41 @@
+name: CD (staging)
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 8.x
+
+      - name: Install
+        run: yarn install
+
+      - name: Build
+        run: yarn predeploy
+
+      - name: Deploy to staging
+        uses: w9jds/firebase-action@master
+        if: success()
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_ID: ${{ secrets.STAGING_PROJECT_ID }}
+        with:
+          args: deploy
+
+      - name: Slack notification
+        uses: 8398a7/action-slack@v2
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
