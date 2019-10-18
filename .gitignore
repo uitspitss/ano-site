@@ -96,7 +96,7 @@ typings/
 .nuxt
 
 # react / gatsby
-public/
+# public/
 
 # vuepress build output
 .vuepress/dist
@@ -165,3 +165,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,linux,windows,node
+
+.firebaserc
+.runtimeconfig.json
+.firebase
+/dist
