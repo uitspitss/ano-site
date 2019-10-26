@@ -23,7 +23,7 @@ jobs:
         run: yarn predeploy
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          PROJECT_ID: ${{ secrets.STAGING_PROJECT_ID }}
+          FIREBASE_PROJECT_ID: ${{ secrets.STAGING_PROJECT_ID }}
 
       - name: Deploy to staging only hosting
         uses: w9jds/firebase-action@master
