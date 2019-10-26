@@ -170,3 +170,4 @@ $RECYCLE.BIN/
 .runtimeconfig.json
 .firebase
 /dist
+*adminsdk.json
