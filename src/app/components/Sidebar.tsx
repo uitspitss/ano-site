@@ -1,20 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import styled from '@emotion/styled';
 import {
   Sidebar,
   SidebarPushable,
   Menu,
   Segment,
+  Button,
   Icon,
 } from 'semantic-ui-react';
 
-type LinkContent = { title: string; url: string };
-
-type Links = LinkContent[];
-
-type Props = {
-  links?: Links;
-};
+import Signin from './Signin';
+import { FirebaseContext, UserContext } from '../contexts';
 
 const StyledSidebar = styled(Sidebar)`
   &&& {
@@ -22,27 +18,45 @@ const StyledSidebar = styled(Sidebar)`
   }
 `;
 
-const CustomSidebar: FC<Props> = ({
-  links = [{ title: 'link-title', url: 'link-url' }],
-}) => (
-  <SidebarPushable as={Segment}>
-    <StyledSidebar
-      as={Menu}
-      animation="push"
-      icon="labeled"
-      inverted
-      vertical
-      // visible
-      width="wide"
-    >
-      {links.map(link => (
-        <Menu.Item as="a" key={link.title}>
-          <Icon name="home" />
-          {link.title}
-        </Menu.Item>
-      ))}
-    </StyledSidebar>
-  </SidebarPushable>
-);
+const CustomSidebar: FC = () => {
+  const { auth } = useContext(FirebaseContext);
+  const { user } = useContext(UserContext);
+  const signOut =
+    auth && user
+      ? (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+          e.preventDefault();
+          auth.signOut();
+        }
+      : () => {};
+
+  return (
+    <SidebarPushable as={Segment}>
+      <StyledSidebar
+        as={Menu}
+        animation="push"
+        vertical
+        visible
+        icon="labeled"
+        width="wide"
+      >
+        {user ? (
+          <>
+            <Menu.Item>
+              <Button onClick={signOut}>
+                <Icon name="twitter" />
+                signed in as <strong>{user.screenName}, sign out</strong>
+              </Button>
+            </Menu.Item>
+          </>
+        ) : (
+          <Menu.Item>
+            <Signin />
+          </Menu.Item>
+        )}
+        <Menu.Item as="a">Home</Menu.Item>
+      </StyledSidebar>
+    </SidebarPushable>
+  );
+};
 
 export default CustomSidebar;
