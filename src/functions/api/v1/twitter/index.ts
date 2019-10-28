@@ -12,7 +12,7 @@ const client = new twitter({
   access_token_secret: config.twitter.access_token_secret,
 });
 
-router.get('/profile/:userId', async (req: Request, res: Response) => {
+router.get('/user/:userId', async (req: Request, res: Response) => {
   const result = await client.get('users/show', { user_id: req.params.userId });
   res.json(result);
 });
