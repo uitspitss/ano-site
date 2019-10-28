@@ -3,6 +3,8 @@ import next from 'next';
 import path from 'path';
 import express, { Request, Response } from 'express';
 
+import api from './api/v1';
+
 // const dev = process.env.NODE_ENV !== 'production';
 const app = next({
   dev: false,
@@ -10,9 +12,13 @@ const app = next({
 });
 const handle = app.getRequestHandler();
 
-// const config = functions.config();
-
 const server = express();
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+
+// routes
+server.use('/api/v1', api);
+
 server.get('*', (req: Request, res: Response) => {
   return handle(req, res);
 });

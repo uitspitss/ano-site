@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "allowJs": false,
     "jsx": "preserve",
@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "noEmit": true,
-    "lib": ["es6", "dom", "es2016"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,

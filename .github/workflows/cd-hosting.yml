@@ -1,8 +1,8 @@
-name: CD (production)
+name: CD (staging:hosting)
 on:
   push:
     branches:
-      - master
+      - feature/hosting
 
 jobs:
   deploy:
@@ -23,16 +23,16 @@ jobs:
         run: yarn predeploy
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          FIREBASE_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          FIREBASE_PROJECT_ID: ${{ secrets.STAGING_PROJECT_ID }}
 
-      - name: Deploy to staging
+      - name: Deploy to staging only hosting
         uses: w9jds/firebase-action@master
         if: success()
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_ID: ${{ secrets.STAGING_PROJECT_ID }}
         with:
-          args: deploy
+          args: deploy --only hosting
 
       - name: Slack notification
         uses: 8398a7/action-slack@v2
