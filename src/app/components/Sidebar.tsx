@@ -35,7 +35,7 @@ const CustomSidebar: FC = () => {
         as={Menu}
         animation="push"
         vertical
-        visible
+        // visible
         icon="labeled"
         width="wide"
       >

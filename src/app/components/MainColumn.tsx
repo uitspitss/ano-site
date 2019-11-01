@@ -6,8 +6,11 @@ import MainLeftColumn from './MainLeftColumn';
 import MainRightColumn from './MainRightColumn';
 import Sidebar from './Sidebar';
 import Title from './Title';
+import { User, defaultUser } from '../services/twitter/models/user';
 
-type Props = {};
+type Props = {
+  user: User;
+};
 
 const PrintedCharsDiv = styled.div`
   &::before {
@@ -22,13 +25,13 @@ const PrintedCharsDiv = styled.div`
   }
 `;
 
-const MainColumn: FC<Props> = () => (
+const MainColumn: FC<Props> = ({ user }) => (
   <PrintedCharsDiv>
     <Grid>
       <Sidebar />
       <Grid.Row>
         <Grid.Column width={16} textAlign="center">
-          <Title />
+          <Title title={`This site is ${user.name}'s Homepage`} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -44,5 +47,9 @@ const MainColumn: FC<Props> = () => (
     </Grid>
   </PrintedCharsDiv>
 );
+
+MainColumn.defaultProps = {
+  user: defaultUser,
+};
 
 export default MainColumn;

@@ -2,6 +2,10 @@ import firebase from 'firebase/app';
 import { createContext } from 'react';
 
 import { User } from './services/ano-site/models/user';
+import {
+  User as TwitterUser,
+  defaultUser as twitterDefaultUser,
+} from './services/twitter/models/user';
 
 type FirebaseContextValue = {
   auth: firebase.auth.Auth | null;
@@ -23,4 +27,14 @@ export const UserContext = createContext<UserContextValue>({
   user: null,
   credential: null,
   setCredential: () => {},
+});
+
+type TwitterContextValue = {
+  user: TwitterUser;
+  setUser: (user: TwitterUser) => void;
+};
+
+export const TwitterContext = createContext<TwitterContextValue>({
+  user: twitterDefaultUser,
+  setUser: () => {},
 });
