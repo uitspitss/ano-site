@@ -6,6 +6,7 @@ import {
   User as TwitterUser,
   defaultUser as twitterDefaultUser,
 } from './services/twitter/models/user';
+import { Tweet, defaultTweet } from './services/twitter/models/tweet';
 
 type FirebaseContextValue = {
   auth: firebase.auth.Auth | null;
@@ -31,10 +32,14 @@ export const UserContext = createContext<UserContextValue>({
 
 type TwitterContextValue = {
   user: TwitterUser;
+  timeline: Tweet[];
   setUser: (user: TwitterUser) => void;
+  setTimeline: (timeline: Tweet[]) => void;
 };
 
 export const TwitterContext = createContext<TwitterContextValue>({
   user: twitterDefaultUser,
+  timeline: [defaultTweet, defaultTweet, defaultTweet],
   setUser: () => {},
+  setTimeline: () => {},
 });

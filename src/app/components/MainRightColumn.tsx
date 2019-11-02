@@ -4,10 +4,12 @@ import LatestInfo from './LatestInfo';
 
 type Props = {};
 
-const MainRightColumn: FC<Props> = () => (
-  <>
-    <LatestInfo />
-  </>
-);
+const MainRightColumn: FC<Props> = () => {
+  return (
+    <>
+      <LatestInfo />
+    </>
+  );
+};
 
 export default MainRightColumn;
