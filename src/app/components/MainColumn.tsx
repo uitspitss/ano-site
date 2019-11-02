@@ -6,7 +6,7 @@ import MainLeftColumn from './MainLeftColumn';
 import MainRightColumn from './MainRightColumn';
 import Sidebar from './Sidebar';
 import Title from './Title';
-import { User, defaultUser } from '../services/twitter/models/user';
+import { User } from '../services/twitter/models/user';
 
 type Props = {
   user: User;
@@ -47,9 +47,5 @@ const MainColumn: FC<Props> = ({ user }) => (
     </Grid>
   </PrintedCharsDiv>
 );
-
-MainColumn.defaultProps = {
-  user: defaultUser,
-};
 
 export default MainColumn;

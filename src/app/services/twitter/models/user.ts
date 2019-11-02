@@ -47,7 +47,7 @@ export type User = {
   verified: boolean;
 };
 
-export const defaultUser = {
+export const defaultUser: User = {
   id: 3250436377,
   id_str: '3250436377',
   name: 'uitspitss',

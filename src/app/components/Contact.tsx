@@ -10,12 +10,7 @@ const Contact: FC<Props> = () => {
 
   return (
     <List>
-      <List.Item>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam qui
-        obcaecati distinctio tempore dolor, fugit doloremque error iste maxime
-        quisquam voluptas explicabo exercitationem quaerat asperiores,
-        laboriosam debitis cupiditate veniam unde.
-      </List.Item>
+      <List.Item>{user.description}</List.Item>
       <List.Item>
         <List.Content>Mail: {}</List.Content>
       </List.Item>
