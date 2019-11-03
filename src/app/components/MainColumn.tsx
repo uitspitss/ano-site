@@ -2,14 +2,17 @@ import React, { FC } from 'react';
 import { Grid } from 'semantic-ui-react';
 import styled from '@emotion/styled';
 
-import MainLeftColumn from './MainLeftColumn';
-import MainRightColumn from './MainRightColumn';
-import Sidebar from './Sidebar';
 import Title from './Title';
+import Profile from './Profile';
+import Contact from './Contact';
+import LatestInfo from './LatestInfo';
+import Sidebar from './Sidebar';
 import { User } from '../services/twitter/models/user';
+import { Tweet } from '../services/twitter/models/tweet';
 
 type Props = {
   user: User;
+  timeline: Tweet[];
 };
 
 const PrintedCharsDiv = styled.div`
@@ -25,7 +28,7 @@ const PrintedCharsDiv = styled.div`
   }
 `;
 
-const MainColumn: FC<Props> = ({ user }) => (
+const MainColumn: FC<Props> = ({ user, timeline }) => (
   <PrintedCharsDiv>
     <Grid>
       <Sidebar />
@@ -37,10 +40,11 @@ const MainColumn: FC<Props> = ({ user }) => (
       <Grid.Row>
         <Grid.Column width={1} />
         <Grid.Column width={6}>
-          <MainLeftColumn />
+          <Profile user={user} />
+          <Contact user={user} />
         </Grid.Column>
         <Grid.Column width={8}>
-          <MainRightColumn />
+          <LatestInfo timeline={timeline} />
         </Grid.Column>
         <Grid.Column width={1} />
       </Grid.Row>

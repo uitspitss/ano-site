@@ -14,12 +14,12 @@ if (!firebase.apps.length) {
 }
 
 const IndexPage: NextPage = () => {
-  const { user } = useContext(TwitterContext);
+  const { user, timeline } = useContext(TwitterContext);
 
   return (
     <>
       <FirebaseApp>
-        <MainColumn user={user} />
+        <MainColumn user={user} timeline={timeline} />
       </FirebaseApp>
     </>
   );
