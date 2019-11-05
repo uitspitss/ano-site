@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-import { User } from './models/user';
+import { Tweet } from './models/tweet';
 
-const getUser = async (userId: string | number) => {
-  let user: User | null = null;
-  const result = await axios.get(`/api/v1/twitter/user/${userId}`);
+const getTimeline = async (screenName: string | number) => {
+  let timeline: Tweet[] | null = null;
+  const result = await axios.get(`/api/v1/twitter/timeline/${screenName}`);
 
   if (result.data) {
-    user = { ...result.data };
+    timeline = result.data;
   }
-  return user;
+  return timeline;
 };
 
-export default getUser;
+export default getTimeline;

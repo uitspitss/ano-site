@@ -4,7 +4,7 @@ import { Item, Header, Divider } from 'semantic-ui-react';
 import { Tweet } from '../services/twitter/models/tweet';
 
 type Props = {
-  timeline: Tweet[];
+  timeline: Tweet[] | null;
 };
 
 const LatestInfo: FC<Props> = ({ timeline }) => (

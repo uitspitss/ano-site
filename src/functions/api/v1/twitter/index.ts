@@ -12,8 +12,17 @@ const client = new twitter({
   access_token_secret: config.twitter.access_token_secret,
 });
 
-router.get('/user/:userId', async (req: Request, res: Response) => {
-  const result = await client.get('users/show', { user_id: req.params.userId });
+router.get('/user/:screenName', async (req: Request, res: Response) => {
+  const result = await client.get('users/show', {
+    screen_name: req.params.screenName,
+  });
+  res.json(result);
+});
+
+router.get('/timeline/:screenName', async (req: Request, res: Response) => {
+  const result = await client.get('statuses/user_timeline', {
+    screen_name: req.params.screenName,
+  });
   res.json(result);
 });
 

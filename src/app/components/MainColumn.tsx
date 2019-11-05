@@ -11,8 +11,8 @@ import { User } from '../services/twitter/models/user';
 import { Tweet } from '../services/twitter/models/tweet';
 
 type Props = {
-  user: User;
-  timeline: Tweet[];
+  user: User | null;
+  timeline: Tweet[] | null;
 };
 
 const PrintedCharsDiv = styled.div`
@@ -34,7 +34,9 @@ const MainColumn: FC<Props> = ({ user, timeline }) => (
       <Sidebar />
       <Grid.Row>
         <Grid.Column width={16} textAlign="center">
-          <Title title={`This site is ${user.name}'s Homepage`} />
+          <Title
+            title={user ? `This site is ${user.name}'s Homepage` : 'Homepage'}
+          />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
