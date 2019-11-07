@@ -14,16 +14,27 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const IndexPage: NextPage = () => {
-  const { user, timeline } = useTwitter('uitspitss');
+type Props = {
+  screenName: string;
+};
+
+const IndexPage: NextPage<Props> = ({ screenName }) => {
+  const { user, timeline } = useTwitter(screenName);
 
   return (
     <>
       <FirebaseApp>
+        {screenName}
         <MainColumn user={user} timeline={timeline} />
       </FirebaseApp>
     </>
   );
+};
+
+IndexPage.getInitialProps = async ({ query }) => {
+  let screenName = query ? query.screenName : null;
+  screenName = screenName ? (screenName as string).split(', ')[0] : 'uitspitss';
+  return { screenName: screenName };
 };
 
 export default IndexPage;

@@ -19,6 +19,10 @@ server.use(express.urlencoded({ extended: true }));
 // routes
 server.use('/api/v1', api);
 
+server.get('/:screenName', (req: Request, res: Response) => {
+  return app.render(req, res, '/', { screenName: req.params.screenName });
+});
+
 server.get('*', (req: Request, res: Response) => {
   return handle(req, res);
 });
