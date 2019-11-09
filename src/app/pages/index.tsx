@@ -7,8 +7,9 @@ import MainColumn from '../components/MainColumn';
 import './index.css';
 import FirebaseApp from '../FirebaseApp';
 import firebaseConfig from '../firebase-config';
-// import { TwitterContext } from '../contexts';
-import useTwitter from '../hooks/use-twitter';
+// import useTwitter from '../hooks/use-twitter';
+import { defaultUser } from '../services/twitter/models/user';
+import { defaultTweet } from '../services/twitter/models/tweet';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -19,13 +20,22 @@ type Props = {
 };
 
 const IndexPage: NextPage<Props> = ({ screenName }) => {
-  const { user, timeline } = useTwitter(screenName);
+  // const { user, timeline, loading, error } = useTwitter(screenName);
+  const user = defaultUser;
+  const timeline = [
+    defaultTweet,
+    defaultTweet,
+    defaultTweet,
+    defaultTweet,
+    defaultTweet,
+    defaultTweet,
+  ];
 
   return (
     <>
       <FirebaseApp>
         {screenName}
-        <MainColumn user={user} timeline={timeline} />
+        <MainColumn user={user} timeline={timeline} loading={true} />
       </FirebaseApp>
     </>
   );

@@ -13,6 +13,7 @@ import { Tweet } from '../services/twitter/models/tweet';
 type Props = {
   user: User | null;
   timeline: Tweet[] | null;
+  loading: boolean;
 };
 
 const PrintedCharsDiv = styled.div`
@@ -28,25 +29,33 @@ const PrintedCharsDiv = styled.div`
   }
 `;
 
-const MainColumn: FC<Props> = ({ user, timeline }) => (
+const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
   <PrintedCharsDiv>
     <Grid>
       <Sidebar />
       <Grid.Row>
         <Grid.Column width={16} textAlign="center">
-          <Title
-            title={user ? `This site is ${user.name}'s Homepage` : 'Homepage'}
-          />
+          {loading ? (
+            <Title title="This site is Ano Site." />
+          ) : (
+            <Title
+              title={
+                user
+                  ? `This site is ${user.name}'s Homepage`
+                  : 'This site is Ano Site.'
+              }
+            />
+          )}
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column width={1} />
         <Grid.Column width={6}>
-          <Profile user={user} />
-          <Contact user={user} />
+          <Profile user={user} loading={loading} />
+          <Contact user={user} loading={loading} />
         </Grid.Column>
         <Grid.Column width={8}>
-          <LatestInfo timeline={timeline} />
+          <LatestInfo timeline={timeline} loading={loading} />
         </Grid.Column>
         <Grid.Column width={1} />
       </Grid.Row>

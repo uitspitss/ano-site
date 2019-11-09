@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
-import { Item, List, Image } from 'semantic-ui-react';
+import { Item, List, Image, Placeholder } from 'semantic-ui-react';
 
 import { User } from '../services/twitter/models/user';
 
 type Props = {
   user: User | null;
+  loading: boolean;
 };
 
-const Profile: FC<Props> = ({ user }) => {
-  if (user) {
+const Profile: FC<Props> = ({ user, loading }) => {
+  if (!loading && user) {
     return (
       <Item.Group>
         <Image src={user.profile_image_url} fluid />
@@ -35,25 +36,16 @@ const Profile: FC<Props> = ({ user }) => {
   } else {
     return (
       <Item.Group>
-        <Image fluid />
-        <Item.Content>
-          <List>
-            <List.Item>
-              <List.Content>Name: </List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content>Birthday: </List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content>Blood Type: </List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content>
-                <a href={`https://twiter.com/`}>twitter</a>
-              </List.Content>
-            </List.Item>
-          </List>
-        </Item.Content>
+        <Placeholder style={{ width: 350, height: 414 }}>
+          <Placeholder.Image />
+        </Placeholder>
+        <Placeholder>
+          <Placeholder.Paragraph>
+            <Placeholder.Line />
+            <Placeholder.Line />
+            <Placeholder.Line />
+          </Placeholder.Paragraph>
+        </Placeholder>
       </Item.Group>
     );
   }
