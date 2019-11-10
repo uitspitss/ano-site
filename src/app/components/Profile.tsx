@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Item, List, Image, Placeholder } from 'semantic-ui-react';
+import { List, Image, Placeholder } from 'semantic-ui-react';
+import { parse, format } from 'date-fns';
 
 import { User } from '../services/twitter/models/user';
 
@@ -11,32 +12,42 @@ type Props = {
 const Profile: FC<Props> = ({ user, loading }) => {
   if (!loading && user) {
     return (
-      <Item.Group>
-        <Image src={user.profile_image_url} fluid />
-        <Item.Content>
-          <List>
-            <List.Item>
-              <List.Content>Name: {user.name}</List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content>Birthday: {user.created_at}</List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content>Blood Type: {user.location}</List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content>
-                <a href={`https://twiter.com/${user.name}`}>twitter</a>
-              </List.Content>
-            </List.Item>
-          </List>
-        </Item.Content>
-      </Item.Group>
+      <List>
+        <List.Item>
+          <Image src={user.profile_image_url} size="medium" />
+        </List.Item>
+        <List.Item>
+          <List.Content>Name: {user.name}</List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Content>
+            Birthday:{' '}
+            {user.created_at
+              ? format(
+                  parse(
+                    user.created_at,
+                    'EEE MMM dd hh:mm:ss xx yyyy',
+                    new Date(),
+                  ),
+                  'MM/dd/yyyy',
+                )
+              : ''}
+          </List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Content>Blood Type: {user.location}</List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Content>
+            <a href={`https://twiter.com/${user.name}`}>twitter</a>
+          </List.Content>
+        </List.Item>
+      </List>
     );
   } else {
     return (
-      <Item.Group>
-        <Placeholder style={{ width: 350, height: 414 }}>
+      <>
+        <Placeholder style={{ width: 300, height: 300 }}>
           <Placeholder.Image />
         </Placeholder>
         <Placeholder>
@@ -46,7 +57,7 @@ const Profile: FC<Props> = ({ user, loading }) => {
             <Placeholder.Line />
           </Placeholder.Paragraph>
         </Placeholder>
-      </Item.Group>
+      </>
     );
   }
 };

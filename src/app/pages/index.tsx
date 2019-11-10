@@ -35,7 +35,7 @@ const IndexPage: NextPage<Props> = ({ screenName }) => {
     <>
       <FirebaseApp>
         {screenName}
-        <MainColumn user={user} timeline={timeline} loading={true} />
+        <MainColumn user={user} timeline={timeline} loading={false} />
       </FirebaseApp>
     </>
   );

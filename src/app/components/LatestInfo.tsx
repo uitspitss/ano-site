@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Item, Header, Divider, Placeholder } from 'semantic-ui-react';
+import { Item, Header, Divider, Placeholder, Icon } from 'semantic-ui-react';
+import { parse, format } from 'date-fns';
 
 import { Tweet } from '../services/twitter/models/tweet';
 
@@ -18,15 +19,29 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => (
           timeline.map(tweet => (
             <Item key={tweet.id_str}>
               <Item.Content>
-                <Item.Header
-                  as="a"
-                  href={`https://twitter.com/${tweet.user.name}/status/${tweet.id_str}`}
-                >
-                  {tweet.text}
-                </Item.Header>
-                <Item.Meta>Tweet</Item.Meta>
+                <Item.Header>Twitter</Item.Header>
+                <Item.Meta>
+                  <a
+                    href={`https://twitter.com/${tweet.user.name}/status/${tweet.id_str}`}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Link to Tweet <Icon name="twitter square" color="blue" />
+                  </a>
+                </Item.Meta>
                 <Item.Description>{tweet.text}</Item.Description>
-                <Item.Extra>{tweet.created_at}</Item.Extra>
+                <Item.Extra>
+                  {tweet.created_at
+                    ? format(
+                        parse(
+                          tweet.created_at,
+                          'EEE MMM dd hh:mm:ss xx yyyy',
+                          new Date(),
+                        ),
+                        'hh:mm MM/dd/yyyy',
+                      )
+                    : ''}
+                </Item.Extra>
               </Item.Content>
             </Item>
           ))}

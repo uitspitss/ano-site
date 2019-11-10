@@ -31,10 +31,10 @@ const PrintedCharsDiv = styled.div`
 
 const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
   <PrintedCharsDiv>
-    <Grid>
+    <Grid column={2} padded relaxed stackable>
       <Sidebar />
-      <Grid.Row>
-        <Grid.Column width={16} textAlign="center">
+      <Grid.Row centered>
+        <Grid.Column width={16}>
           {loading ? (
             <Title title="This site is Ano Site." />
           ) : (
@@ -48,16 +48,14 @@ const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
           )}
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
-        <Grid.Column width={1} />
-        <Grid.Column width={6}>
+      <Grid.Row centered>
+        <Grid.Column width={4}>
           <Profile user={user} loading={loading} />
           <Contact user={user} loading={loading} />
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column width={6}>
           <LatestInfo timeline={timeline} loading={loading} />
         </Grid.Column>
-        <Grid.Column width={1} />
       </Grid.Row>
     </Grid>
   </PrintedCharsDiv>
