@@ -10,15 +10,13 @@ import Sidebar from './Sidebar';
 import { User } from '../services/twitter/models/user';
 import { Tweet } from '../services/twitter/models/tweet';
 
-type Props = {
-  user: User | null;
-  timeline: Tweet[] | null;
-  loading: boolean;
+type StyleProps = {
+  text: string;
 };
 
-const PrintedCharsDiv = styled.div`
-  &::before {
-    content: 'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test';
+const PrintedCharsDiv = styled.div<StyleProps>`
+  &&&::before {
+    content: '${(props: StyleProps) => props.text}';
     z-index: -1;
     font-size: 70px;
     font-family: 'Pinyon Script', cursive;
@@ -29,8 +27,14 @@ const PrintedCharsDiv = styled.div`
   }
 `;
 
+type Props = {
+  user: User | null;
+  timeline: Tweet[] | null;
+  loading: boolean;
+};
+
 const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
-  <PrintedCharsDiv>
+  <PrintedCharsDiv text={user ? user.name : 'username'}>
     <Grid column={2} padded relaxed stackable>
       <Sidebar />
       <Grid.Row centered>
