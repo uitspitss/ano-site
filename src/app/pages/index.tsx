@@ -19,10 +19,14 @@ type Props = {
   screenName: string;
 };
 
-const IndexPage: NextPage<Props> = ({ screenName }) => {
+const IndexPage: NextPage<Props> = ({}) => {
   // const { user, timeline, loading, error } = useTwitter(screenName);
   const user = defaultUser;
   const timeline = [
+    defaultTweet,
+    defaultTweet,
+    defaultTweet,
+    defaultTweet,
     defaultTweet,
     defaultTweet,
     defaultTweet,
@@ -34,7 +38,6 @@ const IndexPage: NextPage<Props> = ({ screenName }) => {
   return (
     <>
       <FirebaseApp>
-        {screenName}
         <MainColumn user={user} timeline={timeline} loading={false} />
       </FirebaseApp>
     </>
