@@ -3,7 +3,7 @@ export type User = {
   created_at: string | null;
   default_profile: boolean;
   default_profile_image: boolean;
-  description: string | null;
+  description: string;
   entities: object;
   favourites_count: number;
   follow_request_sent: boolean;
@@ -18,7 +18,7 @@ export type User = {
   is_translator: boolean;
   lang: string | null;
   listed_count: number | null;
-  location: string | null;
+  location: string;
   name: string;
   needs_phone_verification: boolean;
   notifications: boolean;

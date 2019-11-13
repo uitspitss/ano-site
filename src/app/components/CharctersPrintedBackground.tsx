@@ -7,17 +7,15 @@ type StyleProps = {
 
 const StyledDiv = styled.div<StyleProps>`
   &&& {
-    z-index: -2;
+    z-index: -20;
     background-color: #ffffff;
     position: relative;
-    width: 100%;
-    height: 100%;
     overflow: hidden;
   }
 
   &&&::before {
     content: '${props => Array.from(Array(60), _ => props.text + '　')}';
-    z-index: -1;
+    z-index: -10;
     font-size: 70px;
     font-family: 'Pinyon Script', cursive;
     line-height: 2;

@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { List, Placeholder } from 'semantic-ui-react';
 
 import { User } from '../services/twitter/models/user';
+import FormField from '../components/FormField';
 
 type Props = {
   user: User | null;
@@ -12,24 +13,46 @@ const Contact: FC<Props> = ({ user, loading }) => {
   if (!loading && user) {
     return (
       <List>
-        <List.Item>{user.description}</List.Item>
         <List.Item>
-          <List.Content>Mail: {}</List.Content>
+          <FormField
+            defaultValue={user.description}
+            editable={true}
+            textarea={true}
+          />
         </List.Item>
         <List.Item>
-          <List.Content>Production: {user.location}</List.Content>
+          <List.Content>
+            <FormField label="mail" editable={true} defaultValue="" />
+          </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Zip Code: {user.id_str}</List.Content>
+          <List.Content>
+            <FormField label="production" editable={true} defaultValue="" />
+          </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Address: {user.location}</List.Content>
+          <List.Content>
+            <FormField label="Zip code" editable={true} defaultValue="" />
+          </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Tel: {user.id_str}</List.Content>
+          <List.Content>
+            <FormField
+              label="address"
+              editable={true}
+              defaultValue={user.location}
+            />
+          </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Fax: {user.id_str}</List.Content>
+          <List.Content>
+            <FormField label="tel" editable={true} defaultValue="" />
+          </List.Content>
+        </List.Item>
+        <List.Item>
+          <List.Content>
+            <FormField label="fax" editable={true} defaultValue="" />
+          </List.Content>
         </List.Item>
       </List>
     );
