@@ -20,10 +20,10 @@ jobs:
         uses: actions/cache@v1
         id: cache
         with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          path: ./node_modules
+          key: ${{ runner.os }}-ano_site-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-ano_site-
 
       - name: Install
         if: steps.cache.outputs.cache-hit != 'true'
