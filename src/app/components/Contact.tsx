@@ -13,13 +13,7 @@ const Contact: FC<Props> = ({ user, loading }) => {
   if (!loading && user) {
     return (
       <List>
-        <List.Item>
-          <FormField
-            defaultValue={user.description}
-            editable={true}
-            textarea={true}
-          />
-        </List.Item>
+        <List.Item>{user.description}</List.Item>
         <List.Item>
           <List.Content>
             <FormField label="mail" editable={true} defaultValue="" />
@@ -36,13 +30,7 @@ const Contact: FC<Props> = ({ user, loading }) => {
           </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>
-            <FormField
-              label="address"
-              editable={true}
-              defaultValue={user.location}
-            />
-          </List.Content>
+          <List.Content>Address: {user.location}</List.Content>
         </List.Item>
         <List.Item>
           <List.Content>

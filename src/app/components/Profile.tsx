@@ -18,9 +18,7 @@ const Profile: FC<Props> = ({ user, loading }) => {
           <Image src={user.profile_image_url} size="medium" />
         </List.Item>
         <List.Item>
-          <List.Content>
-            <FormField label="name" editable={true} defaultValue={user.name} />
-          </List.Content>
+          <List.Content>Name: {user.name}</List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
