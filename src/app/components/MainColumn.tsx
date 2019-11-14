@@ -17,7 +17,7 @@ type Props = {
 };
 
 const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
-  // <CharctersPrintedBackground text={user ? user.name : 'username'}>
+  // <CharctersPrintedBackground text={user ? user.name : 'ano-site'}>
   <Grid column={2} padded relaxed stackable>
     <Sidebar />
     <Grid.Row centered>
