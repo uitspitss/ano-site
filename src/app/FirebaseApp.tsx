@@ -41,7 +41,9 @@ const FirebaseApp: FC = ({ children }) => {
 
   return (
     <FirebaseContext.Provider value={{ auth, db }}>
-      <UserContext.Provider value={{ user, credential, setCredential }}>
+      <UserContext.Provider
+        value={{ user, credential, setUser, setCredential }}
+      >
         {children}
       </UserContext.Provider>
     </FirebaseContext.Provider>

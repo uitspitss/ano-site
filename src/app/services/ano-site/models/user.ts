@@ -8,6 +8,12 @@ export type User = {
   photoUrl: string | null;
   provider: string;
   providerUid: string;
+  email: string;
+  production: string;
+  zipCode: string;
+  tel: string;
+  fax: string;
+  published: boolean;
   createdAt: firestore.Timestamp | null;
   updatedAt: firestore.Timestamp | null;
 };
@@ -21,4 +27,10 @@ export const blankUser: User = {
   providerUid: '',
   createdAt: null,
   updatedAt: null,
+  email: '',
+  production: '',
+  zipCode: '',
+  tel: '',
+  fax: '',
+  published: false,
 };
