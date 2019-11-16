@@ -10,7 +10,7 @@ import findUser from './services/ano-site/find-user';
 
 const FirebaseApp: FC = ({ children }) => {
   // FIXME: userのtypeにany
-  const [user, setUser] = useState<User | null | any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [
     credential,
     setCredential,

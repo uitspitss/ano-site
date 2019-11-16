@@ -11,6 +11,7 @@ import {
 
 import Signin from './Signin';
 import { FirebaseContext, UserContext } from '../contexts';
+import writeUserInfo from '../services/ano-site/write-user-info';
 
 const StyledSidebar = styled(Sidebar)`
   &&& {
@@ -19,8 +20,8 @@ const StyledSidebar = styled(Sidebar)`
 `;
 
 const CustomSidebar: FC = ({ children }) => {
-  const { auth } = useContext(FirebaseContext);
-  const { user } = useContext(UserContext);
+  const { auth, db } = useContext(FirebaseContext);
+  const { user, setUser } = useContext(UserContext);
   const [visible, setVisible] = useState(true);
 
   const signOut =
@@ -31,11 +32,23 @@ const CustomSidebar: FC = ({ children }) => {
         }
       : () => {};
 
+  const handlePublish = async (published: boolean) => {
+    if (db && user) {
+      const theUser = await writeUserInfo(db, user, 'published', published);
+      if (theUser) {
+        setUser(theUser);
+        console.log(user.published);
+        console.log(theUser.published);
+        console.log('set user');
+      }
+    }
+  };
+
   useEffect(() => {
     if (user) {
       setVisible(false);
     }
-  }, [user]);
+  }, [user === null]);
 
   return (
     <Sidebar.Pushable as={Segment}>
@@ -74,6 +87,13 @@ const CustomSidebar: FC = ({ children }) => {
               <Signin />
             )}
           </Header>
+        </Menu.Item>
+        <Menu.Item>
+          {user && user.published ? (
+            <Button onClick={() => handlePublish(false)}>unpublish</Button>
+          ) : (
+            <Button onClick={() => handlePublish(true)}>publish</Button>
+          )}
         </Menu.Item>
       </StyledSidebar>
       <Sidebar.Pusher>{children}</Sidebar.Pusher>

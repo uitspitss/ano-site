@@ -8,7 +8,7 @@ const writeUserInfo = async (
   db: firebase.firestore.Firestore,
   signedInUser: User,
   fieldName: string,
-  fieldValue: string | Date,
+  fieldValue: string | boolean,
 ) => {
   const id = signedInUser.id;
 
