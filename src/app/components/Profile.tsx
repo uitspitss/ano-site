@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
-import { parse, format } from 'date-fns';
 
 import { User } from '../services/twitter/models/user';
 import FormField from '../components/FormField';
@@ -23,26 +22,22 @@ const Profile: FC<Props> = ({ user, loading }) => {
         <List.Item>
           <List.Content>
             <FormField
+              name="birthday"
               label="birthday"
+              type="date"
               editable={true}
-              defaultValue={
-                user.created_at
-                  ? format(
-                      parse(
-                        user.created_at,
-                        'EEE MMM dd hh:mm:ss xx yyyy',
-                        new Date(),
-                      ),
-                      'MM/dd/yyyy',
-                    )
-                  : ''
-              }
+              defaultValue=""
             />
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <FormField label="blood type" editable={true} defaultValue="" />
+            <FormField
+              name="bloodType"
+              label="blood type"
+              editable={true}
+              defaultValue=""
+            />
           </List.Content>
         </List.Item>
         <List.Item>

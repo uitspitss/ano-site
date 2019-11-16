@@ -84,10 +84,10 @@ const writeUser = async (
       },
       { merge: true },
     );
-    await batch.commit();
-
-    return theUser;
   }
+  await batch.commit();
+
+  return theUser;
 };
 
 export default writeUser;

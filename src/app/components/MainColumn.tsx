@@ -10,8 +10,10 @@ import Sidebar from './Sidebar';
 import { User } from '../services/twitter/models/user';
 import { Tweet } from '../services/twitter/models/tweet';
 
-type StyleProps = {
-  text: string;
+type Props = {
+  user: User | null;
+  timeline: Tweet[] | null;
+  loading: boolean;
 };
 
 const MainColumn: FC<Props> = ({ user, timeline, loading }) => (

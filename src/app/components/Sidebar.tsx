@@ -33,7 +33,7 @@ const CustomSidebar: FC = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      // setVisible(false);
+      setVisible(false);
     }
   }, [user]);
 

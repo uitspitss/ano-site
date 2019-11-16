@@ -16,31 +16,36 @@ const Contact: FC<Props> = ({ user, loading }) => {
         <List.Item>{user.description}</List.Item>
         <List.Item>
           <List.Content>
-            <FormField label="mail" editable={true} defaultValue="" />
+            <FormField
+              name="email"
+              label="mail"
+              editable={true}
+              defaultValue=""
+            />
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <FormField label="production" editable={true} defaultValue="" />
+            <FormField
+              name="production"
+              label="production"
+              editable={true}
+              defaultValue=""
+            />
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <FormField label="Zip code" editable={true} defaultValue="" />
+            <FormField
+              name="zipCode"
+              label="Zip code"
+              editable={true}
+              defaultValue=""
+            />
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>Address: {user.location}</List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Content>
-            <FormField label="tel" editable={true} defaultValue="" />
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Content>
-            <FormField label="fax" editable={true} defaultValue="" />
-          </List.Content>
         </List.Item>
       </List>
     );

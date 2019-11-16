@@ -1,28 +1,46 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
+import React, { FC, useState, useEffect, useRef, useContext } from 'react';
 import useForm from 'react-hook-form';
 import { capitalize } from 'lodash';
 
+import { FirebaseContext, UserContext } from '../contexts';
+import writeUserInfo from '../services/ano-site/write-user-info';
+
 type FormProps = {
+  name: string;
   label?: string;
+  type?: string;
   defaultValue?: string;
   editable?: boolean;
   textarea?: boolean;
 };
 
 const FormField: FC<FormProps> = ({
+  name,
   label,
+  type,
   defaultValue = '',
   editable = false,
   textarea = false,
 }) => {
+  const { db } = useContext(FirebaseContext);
+  const { user, setUser } = useContext(UserContext);
   const fieldValue = useRef(defaultValue);
   const [changing, setChange] = useState(false);
   const { register, handleSubmit, setValue } = useForm();
 
-  const onSubmit = handleSubmit(({ value }) => {
+  const onSubmit = handleSubmit(async ({ value }) => {
     fieldValue.current = value;
     setValue('value', value);
-    console.log(value, fieldValue.current);
+    console.log(user);
+    console.log(name, value);
+
+    if (db && user && name && value) {
+      const theUser = await writeUserInfo(db, user, name, value);
+      if (theUser) {
+        setUser(theUser);
+      }
+    }
+
     setChange(!changing);
   });
 
@@ -42,7 +60,7 @@ const FormField: FC<FormProps> = ({
           {textarea ? (
             <textarea name="value" ref={register} />
           ) : (
-            <input name="value" ref={register} />
+            <input type={type ? type : 'text'} name="value" ref={register} />
           )}{' '}
           <button type="submit">submit</button>
         </form>

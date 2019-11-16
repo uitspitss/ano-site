@@ -8,11 +8,11 @@ export type User = {
   photoUrl: string | null;
   provider: string;
   providerUid: string;
-  email: string;
-  production: string;
-  zipCode: string;
-  tel: string;
-  fax: string;
+  birthday: string | null;
+  bloodType: string | null;
+  email: string | null;
+  production: string | null;
+  zipCode: string | null;
   published: boolean;
   createdAt: firestore.Timestamp | null;
   updatedAt: firestore.Timestamp | null;
@@ -27,10 +27,10 @@ export const blankUser: User = {
   providerUid: '',
   createdAt: null,
   updatedAt: null,
-  email: '',
-  production: '',
-  zipCode: '',
-  tel: '',
-  fax: '',
-  published: false,
+  birthday: null,
+  bloodType: null, // added this site
+  email: null, // added this site
+  production: null, // added this site
+  zipCode: null, // added this site
+  published: false, // added this sitex
 };
