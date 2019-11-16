@@ -19,14 +19,17 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => (
           timeline.map(tweet => (
             <Item key={tweet.id_str}>
               <Item.Content>
-                <Item.Header>Twitter</Item.Header>
+                <Item.Header>
+                  <Icon name="twitter square" color="blue" />
+                  Twitter
+                </Item.Header>
                 <Item.Meta>
                   <a
                     href={`https://twitter.com/${tweet.user.name}/status/${tweet.id_str}`}
                     target="_blank"
                     rel="noopener"
                   >
-                    Link to Tweet <Icon name="twitter square" color="blue" />
+                    Open with new tab <Icon name="external alternate" />
                   </a>
                 </Item.Meta>
                 <Item.Description>{tweet.text}</Item.Description>

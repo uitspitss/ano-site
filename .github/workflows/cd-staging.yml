@@ -16,7 +16,17 @@ jobs:
         with:
           node-version: 10.x
 
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
 
       - name: Build

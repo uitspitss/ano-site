@@ -1,12 +1,12 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import {
   Sidebar,
-  SidebarPushable,
   Menu,
   Segment,
   Button,
   Icon,
+  Header,
 } from 'semantic-ui-react';
 
 import Signin from './Signin';
@@ -18,9 +18,11 @@ const StyledSidebar = styled(Sidebar)`
   }
 `;
 
-const CustomSidebar: FC = () => {
+const CustomSidebar: FC = ({ children }) => {
   const { auth } = useContext(FirebaseContext);
   const { user } = useContext(UserContext);
+  const [visible, setVisible] = useState(true);
+
   const signOut =
     auth && user
       ? (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -29,33 +31,53 @@ const CustomSidebar: FC = () => {
         }
       : () => {};
 
+  useEffect(() => {
+    if (user) {
+      // setVisible(false);
+    }
+  }, [user]);
+
   return (
-    <SidebarPushable as={Segment}>
+    <Sidebar.Pushable as={Segment}>
+      <Icon name="bars" size="big" onClick={() => setVisible(true)} />
       <StyledSidebar
         as={Menu}
         animation="push"
         vertical
-        // visible
-        icon="labeled"
+        borderless
+        visible={visible}
+        onHide={() => setVisible(false)}
         width="wide"
+        size="large"
       >
-        {user ? (
-          <>
-            <Menu.Item>
+        <Icon name="bars" size="big" onClick={() => setVisible(false)} />
+        <Header size="huge" textAlign="center">
+          ano-site
+        </Header>
+        <Menu.Item>
+          <Header textAlign="center">About</Header>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta
+            quis provident in, eaque dicta nisi. Temporibus saepe sed assumenda
+            repellat minus consequuntur, quas quia, ipsa iusto, id aut corporis
+            animi?
+          </p>
+        </Menu.Item>
+        <Menu.Item>
+          <Header textAlign="center">
+            {user ? (
               <Button onClick={signOut}>
                 <Icon name="twitter" />
                 signed in as <strong>{user.screenName}, sign out</strong>
               </Button>
-            </Menu.Item>
-          </>
-        ) : (
-          <Menu.Item>
-            <Signin />
-          </Menu.Item>
-        )}
-        <Menu.Item as="a">Home</Menu.Item>
+            ) : (
+              <Signin />
+            )}
+          </Header>
+        </Menu.Item>
       </StyledSidebar>
-    </SidebarPushable>
+      <Sidebar.Pusher>{children}</Sidebar.Pusher>
+    </Sidebar.Pushable>
   );
 };
 

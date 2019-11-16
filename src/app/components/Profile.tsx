@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { List, Image, Placeholder } from 'semantic-ui-react';
+import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
 import { parse, format } from 'date-fns';
 
 import { User } from '../services/twitter/models/user';
+import FormField from '../components/FormField';
 
 type Props = {
   user: User | null;
@@ -21,25 +22,38 @@ const Profile: FC<Props> = ({ user, loading }) => {
         </List.Item>
         <List.Item>
           <List.Content>
-            Birthday:{' '}
-            {user.created_at
-              ? format(
-                  parse(
-                    user.created_at,
-                    'EEE MMM dd hh:mm:ss xx yyyy',
-                    new Date(),
-                  ),
-                  'MM/dd/yyyy',
-                )
-              : ''}
+            <FormField
+              label="birthday"
+              editable={true}
+              defaultValue={
+                user.created_at
+                  ? format(
+                      parse(
+                        user.created_at,
+                        'EEE MMM dd hh:mm:ss xx yyyy',
+                        new Date(),
+                      ),
+                      'MM/dd/yyyy',
+                    )
+                  : ''
+              }
+            />
           </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Blood Type: {user.location}</List.Content>
+          <List.Content>
+            <FormField label="blood type" editable={true} defaultValue="" />
+          </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <a href={`https://twiter.com/${user.name}`}>twitter</a>
+            <a
+              href={`https://twiter.com/${user.name}`}
+              target="_blank"
+              rel="noopener"
+            >
+              Twitter Profile <Icon name="external alternate" />
+            </a>
           </List.Content>
         </List.Item>
       </List>
