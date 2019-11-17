@@ -22,21 +22,20 @@ const writeUserInfo = async (
     const user = userDoc.data() as User;
     const diff: Partial<User> = {};
 
+    // NOTE: ad-hoc below implement ignore types
     if (fieldValue !== user[fieldName]) {
       diff[fieldName] = fieldValue;
     }
-    // console.log(fieldName, fieldValue);
-    diff.published = !user.published;
 
     if (!isEmpty(diff)) {
       batch.update(userDoc.ref, {
         ...diff,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
+      await batch.commit();
     }
-    await batch.commit();
 
-    const theUser: User = { ...diff, ...user, id: userDoc.id };
+    const theUser: User = { ...user, ...diff, id: userDoc.id };
 
     return theUser;
   }

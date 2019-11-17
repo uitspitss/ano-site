@@ -35,7 +35,6 @@ const CustomSidebar: FC = ({ children }) => {
     db && user
       ? async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           e.preventDefault();
-          console.log('ok');
           if (db && user) {
             const theUser = await writeUserInfo(
               db,
@@ -43,7 +42,6 @@ const CustomSidebar: FC = ({ children }) => {
               'published',
               !user.published,
             );
-            console.log(theUser);
             if (theUser) {
               setUser(theUser);
             }
@@ -70,7 +68,7 @@ const CustomSidebar: FC = ({ children }) => {
         width="wide"
         size="large"
       >
-        <Icon name="bars" size="big" onClick={() => setVisible(false)} />
+        <Icon name="remove" size="big" onClick={() => setVisible(false)} />
         <Header size="huge" textAlign="center">
           ano-site
         </Header>
@@ -96,7 +94,19 @@ const CustomSidebar: FC = ({ children }) => {
           </Header>
         </Menu.Item>
         <Menu.Item>
-          <Button onClick={() => handlePublish}>unpublish</Button>
+          <Header textAlign="center">
+            {user ? (
+              user.published ? (
+                <Button onClick={handlePublish}>Unpublish</Button>
+              ) : (
+                <Button onClick={handlePublish} primary>
+                  Publish
+                </Button>
+              )
+            ) : (
+              ''
+            )}
+          </Header>
         </Menu.Item>
       </StyledSidebar>
       <Sidebar.Pusher>{children}</Sidebar.Pusher>

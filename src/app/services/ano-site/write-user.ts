@@ -56,7 +56,7 @@ const writeUser = async (
         updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
-    theUser = { ...diff, ...user, id: userDoc.id };
+    theUser = { ...user, ...diff, id: userDoc.id };
   } else {
     const user: User = {
       ...blankUser,
