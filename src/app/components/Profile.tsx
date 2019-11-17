@@ -25,19 +25,14 @@ const Profile: FC<Props> = ({ twitterUser, loading }) => {
               name="birthday"
               label="birthday"
               type="date"
-              editable={true}
               defaultValue=""
+              twitterUser={twitterUser}
             />
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <FormField
-              name="bloodType"
-              label="blood type"
-              editable={true}
-              defaultValue=""
-            />
+            <FormField name="bloodType" label="blood type" defaultValue="" />
           </List.Content>
         </List.Item>
         <List.Item>

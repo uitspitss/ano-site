@@ -17,7 +17,7 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => {
     <>
       {!loading && tl ? (
         <>
-          <Header as="h3">★★★ Latest Infos ★★★</Header>
+          <Header as="h3">★★★ Latest Infomation ★★★</Header>
           <Divider />
           <Item.Group divided>
             {tl.map(tweet => (

@@ -19,8 +19,8 @@ const Contact: FC<Props> = ({ twitterUser, loading }) => {
             <FormField
               name="email"
               label="mail"
-              editable={true}
               defaultValue=""
+              twitterUser={twitterUser}
             />
           </List.Content>
         </List.Item>
@@ -29,8 +29,8 @@ const Contact: FC<Props> = ({ twitterUser, loading }) => {
             <FormField
               name="production"
               label="production"
-              editable={true}
               defaultValue=""
+              twitterUser={twitterUser}
             />
           </List.Content>
         </List.Item>
@@ -39,8 +39,8 @@ const Contact: FC<Props> = ({ twitterUser, loading }) => {
             <FormField
               name="zipCode"
               label="Zip code"
-              editable={true}
               defaultValue=""
+              twitterUser={twitterUser}
             />
           </List.Content>
         </List.Item>
