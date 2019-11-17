@@ -11,10 +11,12 @@ const StyledDiv = styled.div<StyleProps>`
     background-color: #ffffff;
     position: relative;
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
   }
 
   &&&::before {
-    content: '${props => Array.from(Array(60), _ => props.text + '　')}';
+    content: '${props => Array.from(Array(100), _ => props.text + '　')}';
     z-index: -10;
     font-size: 70px;
     font-family: 'Pinyon Script', cursive;
