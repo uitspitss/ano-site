@@ -25,6 +25,8 @@ const writeUserInfo = async (
     if (fieldValue !== user[fieldName]) {
       diff[fieldName] = fieldValue;
     }
+    // console.log(fieldName, fieldValue);
+    diff.published = !user.published;
 
     if (!isEmpty(diff)) {
       batch.update(userDoc.ref, {

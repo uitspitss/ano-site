@@ -31,18 +31,25 @@ const CustomSidebar: FC = ({ children }) => {
           auth.signOut();
         }
       : () => {};
-
-  const handlePublish = async (published: boolean) => {
-    if (db && user) {
-      const theUser = await writeUserInfo(db, user, 'published', published);
-      if (theUser) {
-        setUser(theUser);
-        console.log(user.published);
-        console.log(theUser.published);
-        console.log('set user');
-      }
-    }
-  };
+  const handlePublish =
+    db && user
+      ? async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+          e.preventDefault();
+          console.log('ok');
+          if (db && user) {
+            const theUser = await writeUserInfo(
+              db,
+              user,
+              'published',
+              !user.published,
+            );
+            console.log(theUser);
+            if (theUser) {
+              setUser(theUser);
+            }
+          }
+        }
+      : () => {};
 
   useEffect(() => {
     if (user) {
@@ -89,11 +96,7 @@ const CustomSidebar: FC = ({ children }) => {
           </Header>
         </Menu.Item>
         <Menu.Item>
-          {user && user.published ? (
-            <Button onClick={() => handlePublish(false)}>unpublish</Button>
-          ) : (
-            <Button onClick={() => handlePublish(true)}>publish</Button>
-          )}
+          <Button onClick={() => handlePublish}>unpublish</Button>
         </Menu.Item>
       </StyledSidebar>
       <Sidebar.Pusher>{children}</Sidebar.Pusher>
