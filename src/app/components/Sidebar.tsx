@@ -86,7 +86,7 @@ const CustomSidebar: FC = ({ children }) => {
             {user ? (
               <Button onClick={signOut}>
                 <Icon name="twitter" />
-                signed in as <strong>{user.screenName}, sign out</strong>
+                signed in as {user.screenName}
               </Button>
             ) : (
               <Signin />
