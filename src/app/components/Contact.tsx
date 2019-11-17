@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { List, Placeholder } from 'semantic-ui-react';
 
-import { User } from '../services/twitter/models/user';
+import { User as TwitterUser } from '../services/twitter/models/user';
 import FormField from '../components/FormField';
 
 type Props = {
-  user: User | null;
+  twitterUser: TwitterUser | null;
   loading: boolean;
 };
 
-const Contact: FC<Props> = ({ user, loading }) => {
-  if (!loading && user) {
+const Contact: FC<Props> = ({ twitterUser, loading }) => {
+  if (!loading && twitterUser) {
     return (
       <List>
-        <List.Item>{user.description}</List.Item>
+        <List.Item>{twitterUser.description}</List.Item>
         <List.Item>
           <List.Content>
             <FormField
@@ -45,7 +45,7 @@ const Contact: FC<Props> = ({ user, loading }) => {
           </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Address: {user.location}</List.Content>
+          <List.Content>Address: {twitterUser.location}</List.Content>
         </List.Item>
       </List>
     );

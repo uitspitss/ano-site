@@ -7,18 +7,20 @@ import Contact from './Contact';
 import LatestInfo from './LatestInfo';
 import CharctersPrintedBackground from './CharctersPrintedBackground';
 import Sidebar from './Sidebar';
-import { User } from '../services/twitter/models/user';
+import { User as TwitterUser } from '../services/twitter/models/user';
 import { Tweet } from '../services/twitter/models/tweet';
 
 type Props = {
-  user: User | null;
+  twitterUser: TwitterUser | null;
   timeline: Tweet[] | null;
   loading: boolean;
 };
 
-const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
+const MainColumn: FC<Props> = ({ twitterUser, timeline, loading }) => (
   <Sidebar>
-    <CharctersPrintedBackground text={user ? user.name : 'ano-site'}>
+    <CharctersPrintedBackground
+      text={twitterUser ? twitterUser.name : 'ano-site'}
+    >
       <Grid column={2} padded relaxed stackable>
         <Grid.Row centered>
           <Grid.Column width={16}>
@@ -27,8 +29,8 @@ const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
             ) : (
               <Title
                 title={
-                  user
-                    ? `This site is ${user.name}'s Homepage`
+                  twitterUser
+                    ? `This site is ${twitterUser.name}'s Homepage`
                     : 'This site is Ano Site.'
                 }
               />
@@ -37,8 +39,8 @@ const MainColumn: FC<Props> = ({ user, timeline, loading }) => (
         </Grid.Row>
         <Grid.Row centered>
           <Grid.Column width={4}>
-            <Profile user={user} loading={loading} />
-            <Contact user={user} loading={loading} />
+            <Profile twitterUser={twitterUser} loading={loading} />
+            <Contact twitterUser={twitterUser} loading={loading} />
           </Grid.Column>
           <Grid.Column width={6}>
             <LatestInfo timeline={timeline} loading={loading} />

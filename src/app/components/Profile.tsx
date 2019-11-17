@@ -1,23 +1,23 @@
 import React, { FC } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
 
-import { User } from '../services/twitter/models/user';
+import { User as TwitterUser } from '../services/twitter/models/user';
 import FormField from '../components/FormField';
 
 type Props = {
-  user: User | null;
+  twitterUser: TwitterUser | null;
   loading: boolean;
 };
 
-const Profile: FC<Props> = ({ user, loading }) => {
-  if (!loading && user) {
+const Profile: FC<Props> = ({ twitterUser, loading }) => {
+  if (!loading && twitterUser) {
     return (
       <List>
         <List.Item>
-          <Image src={user.profile_image_url} size="medium" />
+          <Image src={twitterUser.profile_image_url} size="medium" />
         </List.Item>
         <List.Item>
-          <List.Content>Name: {user.name}</List.Content>
+          <List.Content>Name: {twitterUser.name}</List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
@@ -43,7 +43,7 @@ const Profile: FC<Props> = ({ user, loading }) => {
         <List.Item>
           <List.Content>
             <a
-              href={`https://twiter.com/${user.name}`}
+              href={`https://twiter.com/${twitterUser.name}`}
               target="_blank"
               rel="noopener"
             >

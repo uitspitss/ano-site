@@ -7,9 +7,7 @@ import MainColumn from '../components/MainColumn';
 import './index.css';
 import FirebaseApp from '../FirebaseApp';
 import firebaseConfig from '../firebase-config';
-// import useTwitter from '../hooks/use-twitter';
-import { defaultUser } from '../services/twitter/models/user';
-import { defaultTweet } from '../services/twitter/models/tweet';
+import useTwitter from '../hooks/use-twitter';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -19,25 +17,13 @@ type Props = {
   screenName: string;
 };
 
-const IndexPage: NextPage<Props> = ({}) => {
-  // const { user, timeline, loading, error } = useTwitter(screenName);
-  const timeline = [
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-    defaultTweet,
-  ];
+const IndexPage: NextPage<Props> = ({ screenName }) => {
+  const { user, timeline, loading } = useTwitter(screenName);
 
   return (
     <>
       <FirebaseApp>
-        <MainColumn user={defaultUser} timeline={timeline} loading={false} />
+        <MainColumn twitterUser={user} timeline={timeline} loading={loading} />
       </FirebaseApp>
     </>
   );
@@ -45,7 +31,7 @@ const IndexPage: NextPage<Props> = ({}) => {
 
 IndexPage.getInitialProps = async ({ query }) => {
   let screenName = query ? query.screenName : null;
-  screenName = screenName ? (screenName as string).split(', ')[0] : 'uitspitss';
+  screenName = screenName ? (screenName as string).split(', ')[0] : 'ano_site';
   return { screenName: screenName };
 };
 
