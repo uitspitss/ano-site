@@ -27,10 +27,10 @@ server.get('*', (req: Request, res: Response) => {
   return handle(req, res);
 });
 
-exports.next = functions
-  .region('asia-northeast1')
-  .https.onRequest(async (req: Request, res: Response) => {
+exports.next = functions.https.onRequest(
+  async (req: Request, res: Response) => {
     await app.prepare();
 
     return server(req, res);
-  });
+  },
+);
