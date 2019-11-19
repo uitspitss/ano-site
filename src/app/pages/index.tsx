@@ -8,6 +8,7 @@ import './index.css';
 import FirebaseApp from '../FirebaseApp';
 import firebaseConfig from '../firebase-config';
 import useTwitter from '../hooks/use-twitter';
+import useSiteUser from '../hooks/use-site-user';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -19,11 +20,17 @@ type Props = {
 
 const IndexPage: NextPage<Props> = ({ screenName }) => {
   const { user, timeline, loading } = useTwitter(screenName);
+  const { user: siteUser } = useSiteUser(screenName);
 
   return (
     <>
       <FirebaseApp>
-        <MainColumn twitterUser={user} timeline={timeline} loading={loading} />
+        <MainColumn
+          siteUser={siteUser}
+          twitterUser={user}
+          timeline={timeline}
+          loading={loading}
+        />
       </FirebaseApp>
     </>
   );

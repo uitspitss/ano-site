@@ -2,14 +2,16 @@ import React, { FC } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
+import { User } from '../services/ano-site/models/user';
 import FormField from '../components/FormField';
 
 type Props = {
+  siteUser: User | null;
   twitterUser: TwitterUser | null;
   loading: boolean;
 };
 
-const Profile: FC<Props> = ({ twitterUser, loading }) => {
+const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
   if (!loading && twitterUser) {
     return (
       <List>
@@ -25,7 +27,7 @@ const Profile: FC<Props> = ({ twitterUser, loading }) => {
               name="birthday"
               label="birthday"
               type="date"
-              defaultValue=""
+              defaultValue={siteUser ? siteUser.birthday : ''}
               twitterUser={twitterUser}
             />
           </List.Content>

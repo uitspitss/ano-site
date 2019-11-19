@@ -24,7 +24,7 @@ const StyledDiv = styled.div<StyleProps>`
     word-break: break-all;
     position: absolute;
     color: #d3f6e0;
-    top: -50px;
+    top: -30px;
   }
 `;
 

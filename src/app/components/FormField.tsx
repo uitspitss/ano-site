@@ -10,7 +10,7 @@ type FormProps = {
   name: string;
   label?: string;
   type?: string;
-  defaultValue?: string;
+  defaultValue?: string | null;
   textarea?: boolean;
   twitterUser?: TwitterUser | null;
 };

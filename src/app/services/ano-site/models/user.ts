@@ -27,10 +27,10 @@ export const blankUser: User = {
   providerUid: '',
   createdAt: null,
   updatedAt: null,
-  birthday: null,
+  birthday: null, // added this site
   bloodType: null, // added this site
   email: null, // added this site
   production: null, // added this site
   zipCode: null, // added this site
-  published: false, // added this sitex
+  published: false, // added this site
 };
