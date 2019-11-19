@@ -56,6 +56,7 @@ const FormField: FC<FormProps> = ({
     if (twitterUser) {
       if (user && twitterUser.id_str === user.providerUid) {
         setEditable(true);
+        fieldValue.current = user[name];
       } else {
         setEditable(false);
       }

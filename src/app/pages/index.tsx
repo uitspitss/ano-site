@@ -19,17 +19,20 @@ type Props = {
 };
 
 const IndexPage: NextPage<Props> = ({ screenName }) => {
-  const { user, timeline, loading } = useTwitter(screenName);
-  const { user: siteUser } = useSiteUser(screenName);
+  const { user: twitterUser, timeline, loading: twitterLoading } = useTwitter(
+    screenName,
+  );
+  const { user: siteUser, loading: siteLoading } = useSiteUser(screenName);
 
   return (
     <>
       <FirebaseApp>
         <MainColumn
+          screenName={screenName}
           siteUser={siteUser}
-          twitterUser={user}
+          twitterUser={twitterUser}
           timeline={timeline}
-          loading={loading}
+          loading={twitterLoading && siteLoading}
         />
       </FirebaseApp>
     </>

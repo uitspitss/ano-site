@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useEffect } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
 import FormField from '../components/FormField';
+import { UserContext } from '../contexts';
 
 type Props = {
   siteUser: User | null;
@@ -12,7 +13,23 @@ type Props = {
 };
 
 const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
-  if (!loading && twitterUser) {
+  const { user } = useContext(UserContext);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!loading && twitterUser && siteUser) {
+      if (
+        siteUser.published ||
+        (user && twitterUser.id_str === user.providerUid)
+      ) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    }
+  });
+
+  if (twitterUser && siteUser && visible) {
     return (
       <List>
         <List.Item>
@@ -27,14 +44,19 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
               name="birthday"
               label="birthday"
               type="date"
-              defaultValue={siteUser ? siteUser.birthday : ''}
+              defaultValue={siteUser.birthday}
               twitterUser={twitterUser}
             />
           </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
-            <FormField name="bloodType" label="blood type" defaultValue="" />
+            <FormField
+              name="bloodType"
+              label="blood type"
+              defaultValue={siteUser.bloodType}
+              twitterUser={twitterUser}
+            />
           </List.Content>
         </List.Item>
         <List.Item>

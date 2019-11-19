@@ -1,16 +1,35 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useEffect } from 'react';
 import { List, Placeholder } from 'semantic-ui-react';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
+import { User } from '../services/ano-site/models/user';
 import FormField from '../components/FormField';
+import { UserContext } from '../contexts';
 
 type Props = {
+  siteUser: User | null;
   twitterUser: TwitterUser | null;
   loading: boolean;
 };
 
-const Contact: FC<Props> = ({ twitterUser, loading }) => {
-  if (!loading && twitterUser) {
+const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
+  const { user } = useContext(UserContext);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!loading && twitterUser && siteUser) {
+      if (
+        siteUser.published ||
+        (user && twitterUser.id_str === user.providerUid)
+      ) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    }
+  });
+
+  if (twitterUser && siteUser && visible) {
     return (
       <List>
         <List.Item>{twitterUser.description}</List.Item>
@@ -19,7 +38,7 @@ const Contact: FC<Props> = ({ twitterUser, loading }) => {
             <FormField
               name="email"
               label="mail"
-              defaultValue=""
+              defaultValue={siteUser.email}
               twitterUser={twitterUser}
             />
           </List.Content>
@@ -29,7 +48,7 @@ const Contact: FC<Props> = ({ twitterUser, loading }) => {
             <FormField
               name="production"
               label="production"
-              defaultValue=""
+              defaultValue={siteUser.production}
               twitterUser={twitterUser}
             />
           </List.Content>
@@ -39,7 +58,7 @@ const Contact: FC<Props> = ({ twitterUser, loading }) => {
             <FormField
               name="zipCode"
               label="Zip code"
-              defaultValue=""
+              defaultValue={siteUser.zipCode}
               twitterUser={twitterUser}
             />
           </List.Content>

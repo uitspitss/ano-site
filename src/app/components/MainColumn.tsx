@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 
 import Title from './Title';
@@ -12,6 +12,7 @@ import { User as TwitterUser } from '../services/twitter/models/user';
 import { Tweet } from '../services/twitter/models/tweet';
 
 type Props = {
+  screenName: string;
   siteUser: User | null;
   twitterUser: TwitterUser | null;
   timeline: Tweet[] | null;
@@ -19,47 +20,68 @@ type Props = {
 };
 
 const MainColumn: FC<Props> = ({
+  screenName,
   siteUser,
   twitterUser,
   timeline,
   loading,
-}) => (
-  <Sidebar>
-    <CharctersPrintedBackground
-      text={twitterUser ? twitterUser.name : 'ano-site'}
-    >
-      <Grid column={2} padded relaxed stackable>
-        <Grid.Row centered>
-          <Grid.Column width={16}>
-            {loading ? (
-              <Title title="This site is Ano Site." />
-            ) : (
-              <Title
-                title={
-                  twitterUser
-                    ? `This site is ${twitterUser.name}'s Homepage`
-                    : 'This site is Ano Site.'
-                }
+}) => {
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    if (screenName === 'ano_site') {
+      setTitle('this site is ano-site.');
+    } else if (!siteUser) {
+      setTitle(() => `${screenName} is not found in the this site.`);
+    } else if (!twitterUser) {
+      setTitle(() => `${screenName} is not found in the Twitter.`);
+    } else if (!siteUser.published) {
+      setTitle(() => `${screenName}'s homepage haven't been published.`);
+    } else {
+      setTitle(() => `This site is ${siteUser.displayName}'s homepage.`);
+    }
+  });
+
+  return (
+    <Sidebar>
+      <CharctersPrintedBackground
+        text={twitterUser ? twitterUser.name : 'ano-site'}
+      >
+        <Grid column={2} padded relaxed stackable>
+          <Grid.Row centered>
+            <Grid.Column width={16}>
+              {loading ? (
+                <Title title="This site is Ano Site." />
+              ) : (
+                <Title title={title} />
+              )}
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row centered>
+            <Grid.Column width={4}>
+              <Profile
+                siteUser={siteUser}
+                twitterUser={twitterUser}
+                loading={loading}
               />
-            )}
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row centered>
-          <Grid.Column width={4}>
-            <Profile
-              siteUser={siteUser}
-              twitterUser={twitterUser}
-              loading={loading}
-            />
-            <Contact twitterUser={twitterUser} loading={loading} />
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <LatestInfo timeline={timeline} loading={loading} />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </CharctersPrintedBackground>
-  </Sidebar>
-);
+              <Contact
+                siteUser={siteUser}
+                twitterUser={twitterUser}
+                loading={loading}
+              />
+            </Grid.Column>
+            <Grid.Column width={6}>
+              <LatestInfo
+                siteUser={siteUser}
+                timeline={timeline}
+                loading={loading}
+              />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </CharctersPrintedBackground>
+    </Sidebar>
+  );
+};
 
 export default MainColumn;
