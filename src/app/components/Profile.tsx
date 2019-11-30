@@ -1,5 +1,6 @@
 import React, { FC, useState, useContext, useEffect } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
@@ -15,6 +16,7 @@ type Props = {
 const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
   const { user } = useContext(UserContext);
   const [visible, setVisible] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!loading && twitterUser && siteUser) {
@@ -36,13 +38,15 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
           <Image src={twitterUser.profile_image_url} size="medium" />
         </List.Item>
         <List.Item>
-          <List.Content>Name: {twitterUser.name}</List.Content>
+          <List.Content>
+            {t('name')}: {twitterUser.name}
+          </List.Content>
         </List.Item>
         <List.Item>
           <List.Content>
             <FormField
               name="birthday"
-              label="birthday"
+              label={t('birthday')}
               type="date"
               defaultValue={siteUser.birthday}
               twitterUser={twitterUser}
@@ -53,7 +57,7 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
           <List.Content>
             <FormField
               name="bloodType"
-              label="blood type"
+              label={t('blood type')}
               defaultValue={siteUser.bloodType}
               twitterUser={twitterUser}
             />
@@ -66,7 +70,7 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
               target="_blank"
               rel="noopener"
             >
-              Twitter Profile <Icon name="external alternate" />
+              {t('Twitter Profile')} <Icon name="external alternate" />
             </a>
           </List.Content>
         </List.Item>

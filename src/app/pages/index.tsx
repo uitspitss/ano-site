@@ -10,6 +10,8 @@ import firebaseConfig from '../firebase-config';
 import useTwitter from '../hooks/use-twitter';
 import useSiteUser from '../hooks/use-site-user';
 
+import '../i18n';
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

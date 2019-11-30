@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import Title from './Title';
 import Profile from './Profile';
@@ -27,6 +28,7 @@ const MainColumn: FC<Props> = ({
   loading,
 }) => {
   const [title, setTitle] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (screenName === 'ano_site') {
@@ -51,7 +53,7 @@ const MainColumn: FC<Props> = ({
           <Grid.Row centered>
             <Grid.Column width={16}>
               {loading ? (
-                <Title title="This site is Ano Site." />
+                <Title title={t('This site is Ano Site.')} />
               ) : (
                 <Title title={title} />
               )}

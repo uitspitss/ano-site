@@ -1,5 +1,6 @@
 import React, { FC, useState, useContext, useEffect } from 'react';
 import { List, Placeholder } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
@@ -15,6 +16,7 @@ type Props = {
 const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
   const { user } = useContext(UserContext);
   const [visible, setVisible] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!loading && twitterUser && siteUser) {
@@ -37,7 +39,7 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
           <List.Content>
             <FormField
               name="email"
-              label="mail"
+              label={t('email')}
               defaultValue={siteUser.email}
               twitterUser={twitterUser}
             />
@@ -47,14 +49,16 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
           <List.Content>
             <FormField
               name="production"
-              label="production"
+              label={t('production')}
               defaultValue={siteUser.production}
               twitterUser={twitterUser}
             />
           </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>Address: {twitterUser.location}</List.Content>
+          <List.Content>
+            {t('address')}: {twitterUser.location}
+          </List.Content>
         </List.Item>
       </List>
     );

@@ -792,7 +792,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.4.tgz#b23a856751e4bf099262f867767889c0e3fe175b"
   integrity sha512-r24eVUUr0QqNZa+qrImUk8fn5SPhHq+IfYvIoIMg0do3GdK9sMdiLKP3GYVVaxpPKORgm8KRKaNTEhAjgIpLMw==
@@ -5552,6 +5552,13 @@ html-entities@^1.2.0:
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
   integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
 
+html-parse-stringify2@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify2/-/html-parse-stringify2-2.0.1.tgz#dc5670b7292ca158b7bc916c9a6735ac8872834a"
+  integrity sha1-3FZwtyksoVi3vJFsmmc1rIhyg0o=
+  dependencies:
+    void-elements "^2.0.1"
+
 http-errors@1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.2.tgz#4f5029cf13239f31036e5b2e55292bcfbcc85c8f"
@@ -5608,6 +5615,27 @@ https-proxy-agent@^3.0.0:
   dependencies:
     agent-base "^4.3.0"
     debug "^3.1.0"
+
+i18next-browser-languagedetector@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-4.0.1.tgz#6a0b44a93835146287130da36ce3d04a1836879f"
+  integrity sha512-RxSoX6mB8cab0CTIQ+klCS764vYRj+Jk621cnFVsINvcdlb/cdi3vQFyrPwmnowB7ReUadjHovgZX+RPIzHVQQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+
+i18next-xhr-backend@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-3.2.2.tgz#769124441461b085291f539d91864e3691199178"
+  integrity sha512-OtRf2Vo3IqAxsttQbpjYnmMML12IMB5e0fc5B7qKJFLScitYaXa1OhMX0n0X/3vrfFlpHL9Ro/H+ps4Ej2j7QQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+
+i18next@^19.0.1:
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.0.1.tgz#11347b9d5f2ceb4a03750a06010cc249fe065d31"
+  integrity sha512-xZjzCcInvkgx3ZzymkySZ/ULOZyAMXTmQP22Hvnf5CMRqrxe3BXhg6CBtpGSVPMiANnHOmPiNVWHLSncnffnxw==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
@@ -8792,6 +8820,14 @@ react-hook-form@^3.28.9:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-3.28.9.tgz#eeaaae3bd00c5836d1dcfde76978aa62aebe0976"
   integrity sha512-MPbOntFMYcbuDr6f70RxUv/ktUEpx8MbK0W7mjWxwdbClZ2tl98MImtsupsg9XhVD5VPhEXZ75w9s4JGP4Ip6g==
 
+react-i18next@^11.2.5:
+  version "11.2.5"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.2.5.tgz#b2b3cfde63cc46be8f1f99218e90425aa483ce8f"
+  integrity sha512-1vUDLEZ/PSoiyt2CDitreyb6OG4PP/XHXtMHX1akC0I1vgUfZY77DuCugtnMEfl4rQtP7g2KC+bRu3U3pebFRg==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    html-parse-stringify2 "2.0.1"
+
 react-is@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -10574,6 +10610,11 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+void-elements@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
+  integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
 walkdir@^0.4.0:
   version "0.4.1"
