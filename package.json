@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next \"src/app/\"",
     "preserve": "npm run build-public && npm run build-funcs && npm run build-app && npm run copy-deps && npm run install-deps",
-    "serve": "cross-env NODE_ENV=production firebase emulators:start",
+    "serve": "cross-env NODE_ENV=production firebase emulators:start --only functions,hosting",
     "predeploy": "npm run build-app && npm run build-public && npm run build-funcs && npm run postbuild-app && npm run copy-deps",
     "deploy": "firebase deploy",
     "deploy:hosting": "firebase deploy --only hosting",
