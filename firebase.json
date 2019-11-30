@@ -11,5 +11,8 @@
   },
   "functions": {
     "source": "dist/functions"
+  },
+  "firestore": {
+    "rules": "firestore.rules"
   }
 }

@@ -54,16 +54,6 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
           </List.Content>
         </List.Item>
         <List.Item>
-          <List.Content>
-            <FormField
-              name="zipCode"
-              label="Zip code"
-              defaultValue={siteUser.zipCode}
-              twitterUser={twitterUser}
-            />
-          </List.Content>
-        </List.Item>
-        <List.Item>
           <List.Content>Address: {twitterUser.location}</List.Content>
         </List.Item>
       </List>
