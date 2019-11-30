@@ -7,7 +7,10 @@ import {
   Button,
   Icon,
   Header,
+  Form,
 } from 'semantic-ui-react';
+import useForm from 'react-hook-form';
+import Router from 'next/router';
 
 import Signin from './Signin';
 import { FirebaseContext, UserContext } from '../contexts';
@@ -19,10 +22,19 @@ const StyledSidebar = styled(Sidebar)`
   }
 `;
 
+type FormProps = {
+  searchTerm: string;
+};
+
 const CustomSidebar: FC = ({ children }) => {
   const { auth, db } = useContext(FirebaseContext);
   const { user, setUser } = useContext(UserContext);
   const [visible, setVisible] = useState(true);
+  const { register, handleSubmit } = useForm<FormProps>();
+
+  const onSubmit = handleSubmit(({ searchTerm }) => {
+    Router.push({ pathname: `/${searchTerm}` });
+  });
 
   const signOut =
     auth && user
@@ -80,6 +92,17 @@ const CustomSidebar: FC = ({ children }) => {
             repellat minus consequuntur, quas quia, ipsa iusto, id aut corporis
             animi?
           </p>
+        </Menu.Item>
+        <Menu.Item>
+          <Form onSubmit={onSubmit}>
+            <Form.Group>
+              <input
+                ref={register}
+                name="searchTerm"
+                placeholder="search user by Screen Name"
+              />
+            </Form.Group>
+          </Form>
         </Menu.Item>
         <Menu.Item>
           <Header textAlign="center">
