@@ -12,7 +12,6 @@ export type User = {
   bloodType: string | null;
   email: string | null;
   production: string | null;
-  zipCode: string | null;
   published: boolean;
   createdAt: firestore.Timestamp | null;
   updatedAt: firestore.Timestamp | null;
@@ -31,6 +30,5 @@ export const blankUser: User = {
   bloodType: null, // added this site
   email: null, // added this site
   production: null, // added this site
-  zipCode: null, // added this site
   published: false, // added this site
 };
