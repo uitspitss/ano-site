@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+	function isValidDocCounter(counter) {
+    return counter.size() == 2
+      && 'count' in counter && counter.count is int
+      && 'updatedAt' in counter && counter.updatedAt is timestamp;
+  }
+
+  function isValidUser(user) {
+    return user.size() == 13
+      && 'screenName' in user && user.screenName is string
+      && 'displayName' in user
+      && (user.displayName is string || user.displayName == null)
+      && 'description' in user
+      && (user.description is string || user.description == null)
+      && 'photoUrl' in user
+      && (user.photoUrl is string || user.photoUrl == null)
+      && 'providerUid' in user && user.providerUid is string
+      && 'createdAt' in user && user.createdAt is timestamp
+      && 'updatedAt' in user && user.updatedAt is timestamp
+      && 'birthday' in user
+      && (user.birthday is string || user.birthday == null)
+      && 'bloodType' in user
+      && (user.bloodType is string || user.bloodType == null)
+      && 'email' in user
+      && (user.email is string || user.email == null)
+      && 'production' in user
+      && (user.production is string || user.production == null)
+      && 'published' in user
+      && user.published is bool;
+  }
+
+  function isValidImage(image) {
+    return image == null || image.matches('^https?://.+[.](jpg|jpeg|gif|png)');
+  }
+
+  match /databases/{database}/documents {
+    match /docCounters/{docCountersId} {
+      allow read;
+      allow create: if request.auth != null
+        && docCounterId == 'users'
+        && isValidDocCounter(request.resource.data);
+      allow update: if request.auth != null
+        && docCounterId == 'users'
+        && isValidDocCounter(request.resource.data)
+        && (request.resource.data.count == resource.data.count + 1
+        || request.resource.data.count == resource.data.count -1);
+    }
+
+    match /users/{userId} {
+      allow read;
+      allow create: if request.auth != null && request.auth.uid == userId
+        && isValidUser(request.resource.data)
+        && isValidImage(request.resource.data.photoUrl)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if request.auth != null && request.auth.uid == userId
+        && isValidUser(request.resouce.data)
+        && isValidImage(request.resource.data.photoUrl)
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.screenName == resouce.data.screenName
+        && request.resource.data.providerUid == resouce.data.providerUid
+        && request.resource.data.createdAt == resouce.data.createdAt;
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
