@@ -6,6 +6,7 @@ import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
 import FormField from '../components/FormField';
 import { UserContext } from '../contexts';
+import { capitalize } from 'lodash';
 
 type Props = {
   siteUser: User | null;
@@ -57,7 +58,7 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
         </List.Item>
         <List.Item>
           <List.Content>
-            {t('address')}: {twitterUser.location}
+            {capitalize(t('address'))}: {twitterUser.location}
           </List.Content>
         </List.Item>
       </List>
