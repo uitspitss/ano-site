@@ -29,6 +29,7 @@ const writeUserInfo = async (
 
     if (!isEmpty(diff)) {
       batch.update(userDoc.ref, {
+        ...user,
         ...diff,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       });

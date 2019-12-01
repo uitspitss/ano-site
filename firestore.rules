@@ -35,7 +35,7 @@ service cloud.firestore {
   }
 
   match /databases/{database}/documents {
-    match /docCounters/{docCountersId} {
+    match /docCounters/{docCounterId} {
       allow read;
       allow create: if request.auth != null
         && docCounterId == 'users'
@@ -44,7 +44,7 @@ service cloud.firestore {
         && docCounterId == 'users'
         && isValidDocCounter(request.resource.data)
         && (request.resource.data.count == resource.data.count + 1
-        || request.resource.data.count == resource.data.count -1);
+        || request.resource.data.count == resource.data.count - 1);
     }
 
     match /users/{userId} {
@@ -55,12 +55,12 @@ service cloud.firestore {
         && request.resource.data.createdAt == request.time
         && request.resource.data.updatedAt == request.time;
       allow update: if request.auth != null && request.auth.uid == userId
-        && isValidUser(request.resouce.data)
+        && isValidUser(request.resource.data)
         && isValidImage(request.resource.data.photoUrl)
         && request.resource.data.updatedAt == request.time
-        && request.resource.data.screenName == resouce.data.screenName
-        && request.resource.data.providerUid == resouce.data.providerUid
-        && request.resource.data.createdAt == resouce.data.createdAt;
+        && request.resource.data.screenName == resource.data.screenName
+        && request.resource.data.providerUid == resource.data.providerUid
+        && request.resource.data.createdAt == resource.data.createdAt;
       allow delete: if request.auth != null && request.auth.uid == userId;
     }
   }

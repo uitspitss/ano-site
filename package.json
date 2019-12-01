@@ -12,6 +12,7 @@
     "deploy": "firebase deploy",
     "deploy:hosting": "firebase deploy --only hosting",
     "deploy:functions": "firebase deploy --only functions",
+    "deploy:firestore:rules": "firebase deploy --only firestore:rules",
     "clean": "rimraf \"dist/functions/**\" && rimraf \"dist/public\"",
     "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
     "build-funcs": "tsc --project \"src/functions\" && cpx \"src/functions/.runtimeconfig.json\" \"dist/functions\" -C",

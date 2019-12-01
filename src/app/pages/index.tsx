@@ -4,13 +4,12 @@ import 'semantic-ui-css/semantic.min.css';
 import firebase from 'firebase/app';
 
 import MainColumn from '../components/MainColumn';
+import '../i18n';
 import './index.css';
 import FirebaseApp from '../FirebaseApp';
 import firebaseConfig from '../firebase-config';
 import useTwitter from '../hooks/use-twitter';
 import useSiteUser from '../hooks/use-site-user';
-
-import '../i18n';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
