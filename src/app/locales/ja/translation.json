@@ -6,5 +6,9 @@
   "Twitter Profile": "ツイッター プロフィール",
   "email": "メールアドレス",
   "production": "プロダクション",
-  "address": "住所"
+  "address": "住所",
+  "About This Site": "当サイトについて",
+  "This site is a site to share the profile based on the information on Twitter, referring to the design of a site": "当サイトは、某サイトのデザインを参考にし、 Twitter 上の情報をベースにして、プロフィールを共有するサイトです",
+  "The user information and timeline information on this site is Displayed based on account information on Twitter": "当サイトにおける、ユーザー情報やタイムラインの情報は、ページ読み込み時の Twitter 上の Twitter アカウント情報に基づいて表示されます",
+  "In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information": "また、誕生日や血液型等の Twitter 上に存在しない情報は、当サービスにログインしたアカウントのみが当該アカウントの情報を編集できます"
 }

@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import useForm from 'react-hook-form';
 import Router from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 import Signin from './Signin';
 import { FirebaseContext, UserContext } from '../contexts';
@@ -31,6 +32,7 @@ const CustomSidebar: FC = ({ children }) => {
   const { user, setUser } = useContext(UserContext);
   const [visible, setVisible] = useState(true);
   const { register, handleSubmit } = useForm<FormProps>();
+  const { t } = useTranslation();
 
   const onSubmit = handleSubmit(({ searchTerm }) => {
     Router.push({ pathname: `/${searchTerm}` });
@@ -85,12 +87,20 @@ const CustomSidebar: FC = ({ children }) => {
           ano-site
         </Header>
         <Menu.Item>
-          <Header textAlign="center">About</Header>
+          <Header textAlign="center">{t('About This Site')}</Header>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta
-            quis provident in, eaque dicta nisi. Temporibus saepe sed assumenda
-            repellat minus consequuntur, quas quia, ipsa iusto, id aut corporis
-            animi?
+            {t(
+              'This site is a site to share the profile based on the information on Twitter, referring to the design of a site',
+            )}
+            .
+            {t(
+              'The user information and timeline information on this site is Displayed based on account information on Twitter',
+            )}
+            .
+            {t(
+              'In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information',
+            )}
+            .
           </p>
         </Menu.Item>
         <Menu.Item>
