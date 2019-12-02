@@ -11,6 +11,8 @@ import firebaseConfig from '../firebase-config';
 import useTwitter from '../hooks/use-twitter';
 import useSiteUser from '../hooks/use-site-user';
 
+import 'semantic-ui-css/semantic.min.css';
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

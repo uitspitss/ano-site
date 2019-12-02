@@ -69,7 +69,7 @@ const CustomSidebar: FC = ({ children }) => {
 
   return (
     <Sidebar.Pushable as={Segment}>
-      <Icon name="bars" size="big" onClick={() => setVisible(true)} />
+      <Icon name="sidebar" size="big" onClick={() => setVisible(true)} />
       <StyledSidebar
         as={Menu}
         animation="push"
