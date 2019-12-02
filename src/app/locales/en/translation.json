@@ -8,7 +8,14 @@
   "production": "production",
   "address": "address",
   "About This Site": "About This Site",
-  "This site is an profile sharing site on Twitter with reference to the design of a certain site": "This site is a site to share the profile based on the information on Twitter, referring to the design of a site",
+  "This site is a site to share the profile based on the information on Twitter, referring to the design of a site": "This site is a site to share the profile based on the information on Twitter, referring to the design of a site",
   "The user information and timeline information on this site is Displayed based on account information on Twitter": "The user information and timeline information on this site is Displayed based on account information on Twitter",
-  "In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information": "In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information"
+  "In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information": "In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information",
+  "This site is": "This site is",
+  "'s homepage": "'s homepage",
+  "Latest Infomation": "Latest Infomation",
+  "Twitter": "Twitter",
+  "is not found in the this site": "is not found in the this site",
+  "is not found in the Twitter": "is not found in the Twitter",
+  "'s homepage haven't been published": "'s homepage haven't been published"
 }

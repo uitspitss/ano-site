@@ -31,16 +31,16 @@ const MainColumn: FC<Props> = ({
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (screenName === 'ano_site') {
-      setTitle('this site is ano-site.');
-    } else if (!siteUser) {
-      setTitle(() => `${screenName} is not found in the this site.`);
+    if (!siteUser) {
+      setTitle(() => `${screenName} ` + t('is not found in the this site'));
     } else if (!twitterUser) {
-      setTitle(() => `${screenName} is not found in the Twitter.`);
+      setTitle(() => `${screenName} ` + t('is not found in the Twitter'));
     } else if (!siteUser.published) {
-      setTitle(() => `${screenName}'s homepage haven't been published.`);
+      setTitle(() => `${screenName}` + t("'s homepage haven't been published"));
     } else {
-      setTitle(() => `This site is ${siteUser.displayName}'s homepage.`);
+      setTitle(
+        () => t('This site is') + ` ${siteUser.displayName}` + t("'s homepage"),
+      );
     }
   });
 
@@ -53,9 +53,9 @@ const MainColumn: FC<Props> = ({
           <Grid.Row centered>
             <Grid.Column width={16}>
               {loading ? (
-                <Title title={t('This site is Ano Site.')} />
+                <Title title={t('This site is Ano Site') + '.'} />
               ) : (
-                <Title title={title} />
+                <Title title={t(title) + '.'} />
               )}
             </Grid.Column>
           </Grid.Row>

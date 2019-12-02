@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Item, Header, Divider, Placeholder, Icon } from 'semantic-ui-react';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 import { Tweet } from '../services/twitter/models/tweet';
 import { User } from '../services/ano-site/models/user';
@@ -14,11 +15,12 @@ type Props = {
 const LatestInfo: FC<Props> = ({ siteUser, timeline, loading }) => {
   const tl =
     timeline && timeline.length >= 10 ? timeline.slice(0, 10) : timeline;
+  const { t } = useTranslation();
 
   if (!loading && tl && siteUser && siteUser.published) {
     return (
       <>
-        <Header as="h3">★★★ Latest Infomation ★★★</Header>
+        <Header as="h3">★★★ {t('Latest Infomation')} ★★★</Header>
         <Divider />
         <Item.Group divided>
           {tl.map(tweet => (
@@ -26,7 +28,7 @@ const LatestInfo: FC<Props> = ({ siteUser, timeline, loading }) => {
               <Item.Content>
                 <Item.Header>
                   <Icon name="twitter square" color="blue" />
-                  Twitter
+                  {t('Twitter')}
                 </Item.Header>
                 <Item.Meta>
                   <a
