@@ -10,7 +10,7 @@ const writeUserInfo = async (
   fieldName: string,
   fieldValue: string | boolean,
 ) => {
-  const id = signedInUser.id;
+  const { id } = signedInUser;
 
   const batch = db.batch();
   const userDoc = await db
@@ -40,6 +40,8 @@ const writeUserInfo = async (
 
     return theUser;
   }
+
+  return null;
 };
 
 export default writeUserInfo;

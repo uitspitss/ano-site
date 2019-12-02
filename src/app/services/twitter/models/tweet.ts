@@ -26,7 +26,7 @@ export type Tweet = {
   lang: string | null;
 };
 
-export const defaultTweet: Tweet = {
+export const testTweet: Tweet = {
   created_at: 'Sat Nov 02 03:57:46 +0000 2019',
   id: 1190478078067138560,
   id_str: '1190478078067138560',

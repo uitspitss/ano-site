@@ -9,6 +9,7 @@ const getUser = async (screenName: string) => {
   if (result.data) {
     user = result.data;
   }
+
   return user;
 };
 

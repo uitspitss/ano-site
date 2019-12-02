@@ -16,12 +16,14 @@ class Error extends React.Component<Props> {
   }
 
   render() {
+    const { title, errorCode } = this.props;
+
     return (
       <>
         <Head>
-          <title>{this.props.title}</title>
+          <title>{title}</title>
         </Head>
-        {this.props.errorCode}
+        {errorCode}
       </>
     );
   }

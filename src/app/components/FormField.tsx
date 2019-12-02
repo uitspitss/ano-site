@@ -18,7 +18,7 @@ type FormProps = {
 const FormField: FC<FormProps> = ({
   name,
   label,
-  type,
+  type = 'text',
   defaultValue = '',
   textarea = false,
   twitterUser = null,
@@ -71,7 +71,7 @@ const FormField: FC<FormProps> = ({
           {textarea ? (
             <textarea name="value" ref={register} />
           ) : (
-            <input type={type ? type : 'text'} name="value" ref={register} />
+            <input type={type} name="value" ref={register} />
           )}{' '}
           <button type="submit">submit</button>
         </form>

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
-import FormField from '../components/FormField';
+import FormField from './FormField';
 import { UserContext } from '../contexts';
 import { capitalize } from 'lodash';
 
@@ -63,19 +63,19 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
         </List.Item>
       </List>
     );
-  } else {
-    return (
-      <Placeholder>
-        <Placeholder.Paragraph>
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-        </Placeholder.Paragraph>
-      </Placeholder>
-    );
   }
+
+  return (
+    <Placeholder>
+      <Placeholder.Paragraph>
+        <Placeholder.Line />
+        <Placeholder.Line />
+        <Placeholder.Line />
+        <Placeholder.Line />
+        <Placeholder.Line />
+      </Placeholder.Paragraph>
+    </Placeholder>
+  );
 };
 
 export default Contact;

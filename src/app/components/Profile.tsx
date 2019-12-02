@@ -1,12 +1,12 @@
 import React, { FC, useState, useContext, useEffect } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
+import { capitalize } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
-import FormField from '../components/FormField';
+import FormField from './FormField';
 import { UserContext } from '../contexts';
-import { capitalize } from 'lodash';
 
 type Props = {
   siteUser: User | null;
@@ -69,7 +69,7 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
             <a
               href={`https://twiter.com/${twitterUser.name}`}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               {t('Twitter Profile')} <Icon name="external alternate" />
             </a>
@@ -77,22 +77,22 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
         </List.Item>
       </List>
     );
-  } else {
-    return (
-      <>
-        <Placeholder style={{ width: 300, height: 300 }}>
-          <Placeholder.Image />
-        </Placeholder>
-        <Placeholder>
-          <Placeholder.Paragraph>
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Paragraph>
-        </Placeholder>
-      </>
-    );
   }
+
+  return (
+    <>
+      <Placeholder style={{ width: 300, height: 300 }}>
+        <Placeholder.Image />
+      </Placeholder>
+      <Placeholder>
+        <Placeholder.Paragraph>
+          <Placeholder.Line />
+          <Placeholder.Line />
+          <Placeholder.Line />
+        </Placeholder.Paragraph>
+      </Placeholder>
+    </>
+  );
 };
 
 export default Profile;

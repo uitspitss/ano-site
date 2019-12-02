@@ -11,8 +11,6 @@ import firebaseConfig from '../firebase-config';
 import useTwitter from '../hooks/use-twitter';
 import useSiteUser from '../hooks/use-site-user';
 
-import 'semantic-ui-css/semantic.min.css';
-
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -45,7 +43,8 @@ const IndexPage: NextPage<Props> = ({ screenName }) => {
 IndexPage.getInitialProps = async ({ query }) => {
   let screenName = query ? query.screenName : null;
   screenName = screenName ? (screenName as string).split(', ')[0] : 'ano_site';
-  return { screenName: screenName };
+
+  return { screenName };
 };
 
 export default IndexPage;

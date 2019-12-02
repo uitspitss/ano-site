@@ -34,7 +34,7 @@ const LatestInfo: FC<Props> = ({ siteUser, timeline, loading }) => {
                   <a
                     href={`https://twitter.com/${tweet.user.name}/status/${tweet.id_str}`}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                   >
                     Open with new tab <Icon name="external alternate" />
                   </a>
@@ -52,36 +52,36 @@ const LatestInfo: FC<Props> = ({ siteUser, timeline, loading }) => {
         <Divider />
       </>
     );
-  } else {
-    return (
-      <>
-        <Placeholder>
-          <Placeholder.Header>
-            <Placeholder.Line />
-          </Placeholder.Header>
-        </Placeholder>
-        <Divider />
-        <Item.Group divided>
-          {Array.from(Array(5), (_, k) => (
-            <Item key={k}>
-              <Item.Content>
-                <Placeholder>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                  </Placeholder.Paragraph>
-                </Placeholder>
-              </Item.Content>
-            </Item>
-          ))}
-        </Item.Group>
-        <Divider />
-      </>
-    );
   }
+
+  return (
+    <>
+      <Placeholder>
+        <Placeholder.Header>
+          <Placeholder.Line />
+        </Placeholder.Header>
+      </Placeholder>
+      <Divider />
+      <Item.Group divided>
+        {Array.from(Array(5), (_, k) => (
+          <Item key={k}>
+            <Item.Content>
+              <Placeholder>
+                <Placeholder.Paragraph>
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                </Placeholder.Paragraph>
+              </Placeholder>
+            </Item.Content>
+          </Item>
+        ))}
+      </Item.Group>
+      <Divider />
+    </>
+  );
 };
 
 export default LatestInfo;

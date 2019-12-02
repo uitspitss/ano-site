@@ -9,6 +9,7 @@ const getTimeline = async (screenName: string | number) => {
   if (result.data) {
     timeline = result.data;
   }
+
   return timeline;
 };
 

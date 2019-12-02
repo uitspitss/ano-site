@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react';
 import firebase from 'firebase/app';
+import * as firebaseui from 'firebaseui';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Grid } from 'semantic-ui-react';
 
@@ -18,6 +19,7 @@ const Signin: FC = () => {
     callbacks: {
       signInSuccessWithAuthResult: authResult => {
         setCredential(authResult as firebase.auth.UserCredential);
+
         return false;
       },
     },
