@@ -1,0 +1,8 @@
+{
+  "eslint.runtime": "${env:HOME}/.config/nvm/10.17.0/bin/node",
+  "eslint.nodePath": "${workspaceFolder}/node_modules",
+  "eslint.workingDirectories": [
+    { "directory": "./src/app", "changeProcessCWD": true },
+    { "directory": "./src/functions", "changeProcessCWD": true }
+  ]
+}
