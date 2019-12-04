@@ -5,13 +5,15 @@ import {
   Menu,
   Segment,
   Button,
-  Icon,
   Header,
   Form,
 } from 'semantic-ui-react';
 import useForm from 'react-hook-form';
 import Router from 'next/router';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import Signin from './Signin';
 import { FirebaseContext, UserContext } from '../contexts';
@@ -53,7 +55,11 @@ const CustomSidebar: FC = ({ children }) => {
 
   return (
     <Sidebar.Pushable as={Segment}>
-      <Icon name="sidebar" size="big" onClick={() => setVisible(true)} />
+      <FontAwesomeIcon
+        icon={faBars}
+        size="2x"
+        onClick={() => setVisible(true)}
+      />
       <StyledSidebar
         as={Menu}
         animation="push"
@@ -64,7 +70,11 @@ const CustomSidebar: FC = ({ children }) => {
         width="wide"
         size="large"
       >
-        <Icon name="remove" size="big" onClick={() => setVisible(false)} />
+        <FontAwesomeIcon
+          icon={faTimes}
+          size="2x"
+          onClick={() => setVisible(false)}
+        />
         <Header size="huge" textAlign="center">
           ano-site
         </Header>
@@ -100,8 +110,8 @@ const CustomSidebar: FC = ({ children }) => {
           <Header textAlign="center">
             {user ? (
               <Button onClick={signOut}>
-                <Icon name="twitter" />
-                signed in as {user.screenName}
+                <FontAwesomeIcon icon={faTwitter} size="lg" /> signed in as
+                {user.screenName}
               </Button>
             ) : (
               <Signin />

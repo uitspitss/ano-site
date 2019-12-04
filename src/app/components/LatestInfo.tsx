@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
-import { Item, Header, Divider, Placeholder, Icon } from 'semantic-ui-react';
+import { Item, Header, Divider, Placeholder } from 'semantic-ui-react';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 
 import { Tweet } from '../services/twitter/models/tweet';
 
@@ -25,7 +28,7 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => {
             <Item key={tweet.id_str}>
               <Item.Content>
                 <Item.Header>
-                  <Icon name="twitter square" color="blue" />
+                  <FontAwesomeIcon icon={faTwitterSquare} color="#00aced" />{' '}
                   {t('Twitter')}
                 </Item.Header>
                 <Item.Meta>
@@ -34,7 +37,8 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Open with new tab <Icon name="external alternate" />
+                    Open with new tab{' '}
+                    <FontAwesomeIcon icon={faExternalLinkAlt} />
                   </a>
                 </Item.Meta>
                 <Item.Description>{tweet.text}</Item.Description>

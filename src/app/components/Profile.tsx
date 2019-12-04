@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
-import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
+import { List, Image, Placeholder } from 'semantic-ui-react';
 import { capitalize } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
@@ -55,7 +57,8 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t('Twitter Profile')} <Icon name="external alternate" />
+              {t('Twitter Profile')}{' '}
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
             </a>
           </List.Content>
         </List.Item>
