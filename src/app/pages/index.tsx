@@ -42,7 +42,7 @@ const IndexPage: NextPage<Props> = ({ screenName }) => {
 
 IndexPage.getInitialProps = async ({ query }) => {
   let screenName = query ? query.screenName : null;
-  screenName = screenName ? (screenName as string).split(', ')[0] : 'ano_site';
+  screenName = screenName ? (screenName as string).split(', ')[0] : 'uitspitss';
 
   return { screenName };
 };
