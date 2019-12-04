@@ -110,7 +110,7 @@ const CustomSidebar: FC = ({ children }) => {
           <Header textAlign="center">
             {user ? (
               <Button onClick={signOut}>
-                <FontAwesomeIcon icon={faTwitter} size="lg" /> signed in as
+                <FontAwesomeIcon icon={faTwitter} size="lg" /> signed in as{' '}
                 {user.screenName}
               </Button>
             ) : (
