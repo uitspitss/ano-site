@@ -4,20 +4,18 @@ import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
 import { Tweet } from '../services/twitter/models/tweet';
-import { User } from '../services/ano-site/models/user';
 
 type Props = {
-  siteUser: User | null;
   timeline: Tweet[] | null;
   loading: boolean;
 };
 
-const LatestInfo: FC<Props> = ({ siteUser, timeline, loading }) => {
+const LatestInfo: FC<Props> = ({ timeline, loading }) => {
   const tl =
     timeline && timeline.length >= 10 ? timeline.slice(0, 10) : timeline;
   const { t } = useTranslation();
 
-  if (!loading && tl && siteUser && siteUser.published) {
+  if (!loading && tl) {
     return (
       <>
         <Header as="h3">★★★ {t('Latest Infomation')} ★★★</Header>

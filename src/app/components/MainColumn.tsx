@@ -31,19 +31,12 @@ const MainColumn: FC<Props> = ({
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (!siteUser) {
-      setTitle(() => `${screenName} ${t('is not found in the this site')}`);
-    } else if (!twitterUser) {
-      setTitle(() => `${screenName} ${t('is not found in the Twitter')}`);
-    } else if (!siteUser.published) {
+    if (twitterUser) {
       setTitle(
-        () => `${screenName} ${t("'s homepage haven't been published")}`,
+        () => `${t('This site is')} ${twitterUser.name} ${t("'s homepage")}`,
       );
     } else {
-      setTitle(
-        () =>
-          `${t('This site is')} ${siteUser.displayName} ${t("'s homepage")}`,
-      );
+      setTitle(() => `${screenName} ${t('is not found in the Twitter')}`);
     }
   });
 
@@ -76,11 +69,7 @@ const MainColumn: FC<Props> = ({
               />
             </Grid.Column>
             <Grid.Column width={6}>
-              <LatestInfo
-                siteUser={siteUser}
-                timeline={timeline}
-                loading={loading}
-              />
+              <LatestInfo timeline={timeline} loading={loading} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

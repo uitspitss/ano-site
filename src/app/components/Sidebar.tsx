@@ -15,7 +15,6 @@ import { useTranslation } from 'react-i18next';
 
 import Signin from './Signin';
 import { FirebaseContext, UserContext } from '../contexts';
-import writeUserInfo from '../services/ano-site/write-user-info';
 
 const StyledSidebar = styled(Sidebar)`
   &&& {
@@ -28,8 +27,8 @@ type FormProps = {
 };
 
 const CustomSidebar: FC = ({ children }) => {
-  const { auth, db } = useContext(FirebaseContext);
-  const { user, setUser } = useContext(UserContext);
+  const { auth } = useContext(FirebaseContext);
+  const { user } = useContext(UserContext);
   const [visible, setVisible] = useState(true);
   const { register, handleSubmit } = useForm<FormProps>();
   const { t } = useTranslation();
@@ -43,23 +42,6 @@ const CustomSidebar: FC = ({ children }) => {
       ? (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           e.preventDefault();
           auth.signOut();
-        }
-      : () => {};
-  const handlePublish =
-    db && user
-      ? async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-          e.preventDefault();
-          if (db && user) {
-            const theUser = await writeUserInfo(
-              db,
-              user,
-              'published',
-              !user.published,
-            );
-            if (theUser) {
-              setUser(theUser);
-            }
-          }
         }
       : () => {};
 
@@ -123,21 +105,6 @@ const CustomSidebar: FC = ({ children }) => {
               </Button>
             ) : (
               <Signin />
-            )}
-          </Header>
-        </Menu.Item>
-        <Menu.Item>
-          <Header textAlign="center">
-            {user ? (
-              user.published ? (
-                <Button onClick={handlePublish}>Unpublish</Button>
-              ) : (
-                <Button onClick={handlePublish} primary>
-                  Publish
-                </Button>
-              )
-            ) : (
-              ''
             )}
           </Header>
         </Menu.Item>

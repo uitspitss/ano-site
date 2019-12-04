@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext, useEffect } from 'react';
+import React, { FC } from 'react';
 import { List, Image, Placeholder, Icon } from 'semantic-ui-react';
 import { capitalize } from 'lodash';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
 import FormField from './FormField';
-import { UserContext } from '../contexts';
 
 type Props = {
   siteUser: User | null;
@@ -15,24 +14,9 @@ type Props = {
 };
 
 const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
-  const { user } = useContext(UserContext);
-  const [visible, setVisible] = useState(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (!loading && twitterUser && siteUser) {
-      if (
-        siteUser.published ||
-        (user && twitterUser.id_str === user.providerUid)
-      ) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    }
-  });
-
-  if (twitterUser && siteUser && visible) {
+  if (!loading && twitterUser) {
     return (
       <List>
         <List.Item>
@@ -49,7 +33,7 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
               name="birthday"
               label={t('birthday')}
               type="date"
-              defaultValue={siteUser.birthday}
+              defaultValue={siteUser ? siteUser.birthday : ''}
               twitterUser={twitterUser}
             />
           </List.Content>
@@ -59,7 +43,7 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
             <FormField
               name="bloodType"
               label={t('blood type')}
-              defaultValue={siteUser.bloodType}
+              defaultValue={siteUser ? siteUser.bloodType : ''}
               twitterUser={twitterUser}
             />
           </List.Content>

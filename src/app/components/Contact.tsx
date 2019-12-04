@@ -1,11 +1,10 @@
-import React, { FC, useState, useContext, useEffect } from 'react';
+import React, { FC } from 'react';
 import { List, Placeholder } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import { User as TwitterUser } from '../services/twitter/models/user';
 import { User } from '../services/ano-site/models/user';
 import FormField from './FormField';
-import { UserContext } from '../contexts';
 import { capitalize } from 'lodash';
 
 type Props = {
@@ -15,24 +14,9 @@ type Props = {
 };
 
 const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
-  const { user } = useContext(UserContext);
-  const [visible, setVisible] = useState(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (!loading && twitterUser && siteUser) {
-      if (
-        siteUser.published ||
-        (user && twitterUser.id_str === user.providerUid)
-      ) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    }
-  });
-
-  if (twitterUser && siteUser && visible) {
+  if (!loading && twitterUser) {
     return (
       <List>
         <List.Item>{twitterUser.description}</List.Item>
@@ -41,7 +25,7 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
             <FormField
               name="email"
               label={t('email')}
-              defaultValue={siteUser.email}
+              defaultValue={siteUser ? siteUser.email : ''}
               twitterUser={twitterUser}
             />
           </List.Content>
@@ -51,7 +35,7 @@ const Contact: FC<Props> = ({ siteUser, twitterUser, loading }) => {
             <FormField
               name="production"
               label={t('production')}
-              defaultValue={siteUser.production}
+              defaultValue={siteUser ? siteUser.production : ''}
               twitterUser={twitterUser}
             />
           </List.Content>
