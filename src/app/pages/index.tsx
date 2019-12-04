@@ -11,9 +11,9 @@ import firebaseConfig from '../firebase-config';
 import useTwitter from '../hooks/use-twitter';
 import useSiteUser from '../hooks/use-site-user';
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+// // if (!firebase.apps.length) {
+firebase.initializeApp(firebaseConfig);
+// }
 
 type Props = {
   screenName: string;
