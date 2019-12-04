@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextPage } from 'next';
-import 'semantic-ui-css/semantic.min.css';
 import firebase from 'firebase/app';
 
 import MainColumn from '../components/MainColumn';
