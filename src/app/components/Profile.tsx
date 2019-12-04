@@ -51,7 +51,7 @@ const Profile: FC<Props> = ({ siteUser, twitterUser, loading }) => {
         <List.Item>
           <List.Content>
             <a
-              href={`https://twiter.com/${twitterUser.name}`}
+              href={`https://twitter.com/${twitterUser.name}`}
               target="_blank"
               rel="noopener noreferrer"
             >
