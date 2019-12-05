@@ -32,7 +32,7 @@ const UserPage: NextPage = () => {
           siteUser={siteUser}
           twitterUser={twitterUser}
           timeline={timeline}
-          loading={twitterLoading && siteLoading}
+          loading={twitterLoading || siteLoading}
         />
       </FirebaseApp>
     </>
