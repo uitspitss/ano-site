@@ -44,7 +44,7 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => {
                 <Item.Description>{tweet.text}</Item.Description>
                 <Item.Extra>
                   {tweet.created_at && tweet.created_at
-                    ? format(Date.parse(tweet.created_at), 'hh:mm MM/dd/yyyy')
+                    ? format(Date.parse(tweet.created_at), 'HH:mm MM/dd/yyyy')
                     : ''}
                 </Item.Extra>
               </Item.Content>
