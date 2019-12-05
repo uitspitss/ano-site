@@ -32,7 +32,7 @@ const IndexPage: NextPage<Props> = ({ screenName }) => {
           siteUser={siteUser}
           twitterUser={twitterUser}
           timeline={timeline}
-          loading={twitterLoading && siteLoading}
+          loading={twitterLoading || siteLoading}
         />
       </FirebaseApp>
     </>
