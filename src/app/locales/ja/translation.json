@@ -12,10 +12,11 @@
   "The user information and timeline information on this site is Displayed based on account information on Twitter": "当サイトにおける、ユーザー情報やタイムラインの情報は、ページ読み込み時の Twitter 上の Twitter アカウント情報に基づいて表示されます",
   "In addition, information that does not exist on Twitter, such as birthdays and blood types, Only the account logged in to this service can edit the account information": "また、誕生日や血液型等の Twitter 上に存在しない情報は、当サービスにログインしたアカウントのみが当該アカウントの情報を編集できます",
   "This site is": "このサイトは",
-  "'s homepage": "のホームページです",
+  "'s homepage": "のホームページ",
   "Latest Infomation": "最新情報",
   "Twitter": "ツイッター",
   "is not found in the this site": "はこのサイトでは見つかりませんでした",
   "is not found in the Twitter": "はツイッターでは見つかりませんでした",
-  "'s homepage haven't been published": "のホームページは公開されていません。"
+  "'s homepage haven't been published": "のホームページは公開されていません。",
+  "It is not the homepage of the above Twitter account": "上記の Twitter アカウントのホームページではありません"
 }

@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import Title from './Title';
@@ -32,9 +32,7 @@ const MainColumn: FC<Props> = ({
 
   useEffect(() => {
     if (twitterUser) {
-      setTitle(
-        () => `${t('This site is')} ${twitterUser.name} ${t("'s homepage")}`,
-      );
+      setTitle(() => `${twitterUser.name} ${t("'s homepage")}`);
     } else {
       setTitle(() => `${screenName} ${t('is not found in the Twitter')}`);
     }
@@ -51,7 +49,14 @@ const MainColumn: FC<Props> = ({
               {loading ? (
                 <Title title={`${t('This site is Ano Site')}.`} />
               ) : (
-                <Title title={`${t(title)}.`} />
+                <>
+                  <Title title={`${t(title)}`} />
+                  <Header color="red" textAlign="center">
+                    {`*${t(
+                      'It is not the homepage of the above Twitter account',
+                    )}.`}
+                  </Header>
+                </>
               )}
             </Grid.Column>
           </Grid.Row>
