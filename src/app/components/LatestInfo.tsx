@@ -33,7 +33,7 @@ const LatestInfo: FC<Props> = ({ timeline, loading }) => {
                 </Item.Header>
                 <Item.Meta>
                   <a
-                    href={`https://twitter.com/${tweet.user.name}/status/${tweet.id_str}`}
+                    href={`https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
